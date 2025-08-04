@@ -487,6 +487,8 @@ let isPlaying = false;
 let isPaused = false;
 let currentPlayingButton = null;
 let selectedVoice = null;
+let playbackStartTime = 0;
+let currentPlaybackPosition = 0;
 
 // Initialize the chatbot
 document.addEventListener('DOMContentLoaded', function() {
@@ -494,7 +496,25 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeSpeechRecognition();
     setupEventListeners();
     loadVoices();
+    initializeMobileAudio();
 });
+
+// Initialize mobile audio support
+function initializeMobileAudio() {
+    // Enable audio on first user interaction (required for mobile)
+    const enableAudio = () => {
+        if (synthesis && synthesis.cancel) {
+            synthesis.cancel();
+        }
+        // Remove the event listeners once audio is enabled
+        document.removeEventListener('touchstart', enableAudio);
+        document.removeEventListener('click', enableAudio);
+    };
+    
+    // Add event listeners for first interaction
+    document.addEventListener('touchstart', enableAudio, { once: true });
+    document.addEventListener('click', enableAudio, { once: true });
+}
 
 // Load and select the best female voice
 function loadVoices() {
@@ -1014,23 +1034,22 @@ function togglePlayPause(messageId, buttonElement) {
     // If this is the currently playing message
     if (currentPlayingButton === buttonElement) {
         if (isPlaying && !isPaused) {
-            // Currently playing - pause it
-            synthesis.pause();
+            // Currently playing - stop it (mobile-friendly approach)
+            synthesis.cancel();
             isPaused = true;
             isPlaying = false;
             buttonElement.classList.remove('playing');
             buttonElement.classList.add('paused');
             icon.className = 'fas fa-play';
             text.textContent = 'Resume';
+            
+            // Store current position for resume (approximate)
+            currentPlaybackPosition = Date.now() - playbackStartTime;
         } else if (isPaused) {
-            // Currently paused - resume it
-            synthesis.resume();
+            // Currently paused - restart from beginning (mobile-friendly)
             isPaused = false;
-            isPlaying = true;
-            buttonElement.classList.remove('paused');
-            buttonElement.classList.add('playing');
-            icon.className = 'fas fa-pause';
-            text.textContent = 'Pause';
+            // For mobile compatibility, restart the entire message
+            startPlayback(messageText, buttonElement);
         }
         return;
     }
@@ -1039,10 +1058,13 @@ function togglePlayPause(messageId, buttonElement) {
     startPlayback(messageText, buttonElement);
 }
 
-// Start playback for a new message
+// Start playback for a new message (mobile-optimized)
 function startPlayback(messageText, buttonElement) {
     const icon = buttonElement.querySelector('i');
     const text = buttonElement.querySelector('span');
+    
+    // Stop any current playback first
+    synthesis.cancel();
     
     // Clean text for speech
     const cleanText = messageText
@@ -1050,22 +1072,11 @@ function startPlayback(messageText, buttonElement) {
         .replace(/🍛|🍽️|✨|🙏/g, '')
         .replace(/\n/g, '. ');
     
-    currentUtterance = new SpeechSynthesisUtterance(cleanText);
-    
-    // Configure voice settings for authentic female voice
-    if (selectedVoice) {
-        currentUtterance.voice = selectedVoice;
-    }
-    
-    // Optimize settings for natural female speech
-    currentUtterance.rate = 0.85;  // Slightly slower for clarity
-    currentUtterance.pitch = 1.1;  // Slightly higher pitch for feminine tone
-    currentUtterance.volume = 0.9; // Good volume level
-    
     // Set current playing button
     currentPlayingButton = buttonElement;
     isPlaying = true;
     isPaused = false;
+    playbackStartTime = Date.now();
     
     // Update button state to playing
     buttonElement.classList.remove('paused');
@@ -1073,39 +1084,79 @@ function startPlayback(messageText, buttonElement) {
     icon.className = 'fas fa-pause';
     text.textContent = 'Pause';
     
-    // Handle speech events
-    currentUtterance.onend = function() {
-        resetButton(buttonElement);
-        currentPlayingButton = null;
-        isPlaying = false;
-        isPaused = false;
-    };
-    
-    currentUtterance.onerror = function(event) {
-        console.error('Speech synthesis error:', event.error);
-        resetButton(buttonElement);
-        currentPlayingButton = null;
-        isPlaying = false;
-        isPaused = false;
-    };
-    
-    // Handle pause event (for browsers that support it)
-    currentUtterance.onpause = function() {
-        buttonElement.classList.remove('playing');
-        buttonElement.classList.add('paused');
-        icon.className = 'fas fa-play';
-        text.textContent = 'Resume';
-    };
-    
-    // Handle resume event (for browsers that support it)
-    currentUtterance.onresume = function() {
-        buttonElement.classList.remove('paused');
-        buttonElement.classList.add('playing');
-        icon.className = 'fas fa-pause';
-        text.textContent = 'Pause';
-    };
-    
-    synthesis.speak(currentUtterance);
+    // Use mobile-optimized speech function
+    if (isMobileDevice()) {
+        // Mobile-specific approach with longer delay
+        setTimeout(() => {
+            currentUtterance = new SpeechSynthesisUtterance(cleanText);
+            
+            if (selectedVoice) {
+                currentUtterance.voice = selectedVoice;
+            }
+            
+            // Mobile-optimized settings
+            currentUtterance.rate = 0.8;   // Slower for mobile
+            currentUtterance.pitch = 1.1;  // Feminine tone  
+            currentUtterance.volume = 1.0; // Full volume
+            
+            // Event handlers
+            currentUtterance.onend = function() {
+                resetButton(buttonElement);
+                currentPlayingButton = null;
+                isPlaying = false;
+                isPaused = false;
+                playbackStartTime = 0;
+                currentPlaybackPosition = 0;
+            };
+            
+            currentUtterance.onerror = function(event) {
+                console.error('Speech synthesis error:', event.error);
+                resetButton(buttonElement);
+                currentPlayingButton = null;
+                isPlaying = false;
+                isPaused = false;
+                playbackStartTime = 0;
+                currentPlaybackPosition = 0;
+            };
+            
+            synthesis.speak(currentUtterance);
+        }, 300); // Longer delay for mobile
+    } else {
+        // Desktop approach
+        currentUtterance = new SpeechSynthesisUtterance(cleanText);
+        
+        if (selectedVoice) {
+            currentUtterance.voice = selectedVoice;
+        }
+        
+        currentUtterance.rate = 0.85;
+        currentUtterance.pitch = 1.1;
+        currentUtterance.volume = 1.0;
+        
+        // Event handlers
+        currentUtterance.onend = function() {
+            resetButton(buttonElement);
+            currentPlayingButton = null;
+            isPlaying = false;
+            isPaused = false;
+            playbackStartTime = 0;
+            currentPlaybackPosition = 0;
+        };
+        
+        currentUtterance.onerror = function(event) {
+            console.error('Speech synthesis error:', event.error);
+            resetButton(buttonElement);
+            currentPlayingButton = null;
+            isPlaying = false;
+            isPaused = false;
+            playbackStartTime = 0;
+            currentPlaybackPosition = 0;
+        };
+        
+        setTimeout(() => {
+            synthesis.speak(currentUtterance);
+        }, 100);
+    }
 }
 
 // Reset button to initial state
@@ -1116,4 +1167,56 @@ function resetButton(buttonElement) {
     buttonElement.classList.remove('playing', 'paused');
     icon.className = 'fas fa-play';
     text.textContent = 'Play';
+}
+
+// Mobile device detection
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+           (navigator.maxTouchPoints && navigator.maxTouchPoints > 2);
+}
+
+// Enhanced speech synthesis for mobile
+function speakTextMobile(text, buttonElement) {
+    // For mobile devices, ensure synthesis is completely stopped first
+    if (isMobileDevice()) {
+        synthesis.cancel();
+        
+        // Wait a bit longer for mobile browsers to reset
+        setTimeout(() => {
+            const utterance = new SpeechSynthesisUtterance(text);
+            
+            if (selectedVoice) {
+                utterance.voice = selectedVoice;
+            }
+            
+            // Mobile-optimized settings
+            utterance.rate = 0.8;   // Slower for mobile clarity
+            utterance.pitch = 1.1;  // Feminine tone
+            utterance.volume = 1.0; // Max volume for mobile
+            
+            // Force refresh voices on mobile
+            const voices = synthesis.getVoices();
+            if (voices.length > 0 && !selectedVoice) {
+                const femaleVoice = voices.find(voice => 
+                    voice.name.toLowerCase().includes('female') ||
+                    voice.name.toLowerCase().includes('woman') ||
+                    voice.name.toLowerCase().includes('samantha') ||
+                    voice.name.toLowerCase().includes('zira')
+                ) || voices[0];
+                utterance.voice = femaleVoice;
+            }
+            
+            synthesis.speak(utterance);
+        }, 200);
+    } else {
+        // Desktop - use regular approach
+        const utterance = new SpeechSynthesisUtterance(text);
+        if (selectedVoice) {
+            utterance.voice = selectedVoice;
+        }
+        utterance.rate = 0.85;
+        utterance.pitch = 1.1;
+        utterance.volume = 1.0;
+        synthesis.speak(utterance);
+    }
 }
