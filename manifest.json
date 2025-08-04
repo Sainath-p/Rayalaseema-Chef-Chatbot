@@ -2,7 +2,7 @@
   "name": "Rayalaseema Chef - Andhra Dishes Chatbot",
   "short_name": "Rayalaseema Chef",
   "description": "Interactive chatbot for authentic Andhra Rayalaseema recipes with voice support",
-  "start_url": "/",
+  "start_url": "./RayalaseemaDishesChatbot.html",
   "display": "standalone",
   "background_color": "#ff6b35",
   "theme_color": "#ff6b35",

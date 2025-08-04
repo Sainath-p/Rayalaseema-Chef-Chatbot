@@ -2,7 +2,7 @@
   "name": "rayalaseema-chef-chatbot",
   "version": "1.0.0",
   "description": "Interactive chatbot for authentic Andhra Rayalaseema dishes with voice support",
-  "main": "index.html",
+  "main": "RayalaseemaDishesChatbot.html",
   "scripts": {
     "start": "python server.py",
     "build": "echo 'Static files ready for deployment'",

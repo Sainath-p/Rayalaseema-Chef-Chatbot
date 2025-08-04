@@ -11,7 +11,7 @@
    - Check "Add README file"
 3. **Upload Files**:
    - Click "uploading an existing file"
-   - Drag all your files (index.html, styles.css, script.js, etc.)
+   - Drag all your files (RayalaseemaDishesChatbot.html, styles.css, script.js, etc.)
    - Commit changes
 4. **Enable Pages**:
    - Go to Settings → Pages

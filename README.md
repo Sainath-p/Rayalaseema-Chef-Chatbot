@@ -15,7 +15,7 @@ Visit: [Your Live URL Here]
 
 ## 🛠️ Local Setup
 1. Download all files
-2. Open `index.html` in your browser
+2. Open `RayalaseemaDishesChatbot.html` in your browser
 3. Or run `python server.py` for local server at http://localhost:8000
 
 ## 📱 Usage
