@@ -341,6 +341,134 @@ let dishesData = {
         "Season with salt and red chili powder",
         "Simmer for 15 minutes and serve with rice"
       ]
+    },
+    {
+      "name": "Rayalaseema Bellam Paravannam",
+      "how_to_prepare": "Traditional jaggery rice pudding from Rayalaseema, made with aromatic rice, jaggery, and ghee, often prepared during festivals and special occasions",
+      "stepwise_instructions": [
+        "Cook 1 cup basmati rice with 4 cups milk until soft and creamy",
+        "In a pan, melt 200g jaggery with 2 tbsp water to make syrup",
+        "Strain the jaggery syrup to remove impurities",
+        "Add the jaggery syrup to the cooked rice and milk",
+        "Heat 3 tbsp ghee and fry 10 cashews and 15 raisins until golden",
+        "Add the fried nuts to the pudding",
+        "Add 1/2 tsp cardamom powder and a pinch of salt",
+        "Simmer for 10 minutes until thick consistency",
+        "Garnish with more fried nuts and serve warm or cold"
+      ]
+    },
+    {
+      "name": "Ariselu",
+      "how_to_prepare": "Traditional Rayalaseema sweet made with rice flour and jaggery, deep-fried until golden and crispy, a must-have during Sankranti festival",
+      "stepwise_instructions": [
+        "Soak 2 cups rice for 4 hours, drain and spread to dry for 2 hours",
+        "Grind the rice to fine flour and sieve it",
+        "Make thick jaggery syrup with 300g jaggery and 1/4 cup water",
+        "Cook until it reaches soft ball consistency",
+        "Add 1 tsp sesame seeds to the syrup",
+        "Mix the rice flour gradually into hot jaggery syrup",
+        "Knead into smooth dough while warm, cover and rest for 30 minutes",
+        "Heat oil for deep frying on medium heat",
+        "Take small portions, flatten into discs using banana leaf",
+        "Deep fry until golden brown and crispy",
+        "Drain on paper towels and store in airtight container"
+      ]
+    },
+    {
+      "name": "Rayalaseema Pongal Sweet",
+      "how_to_prepare": "Sweet version of pongal made with broken wheat, jaggery, and ghee, popular in Rayalaseema during harvest festivals",
+      "stepwise_instructions": [
+        "Dry roast 1 cup broken wheat until aromatic and golden",
+        "Boil 3 cups water with a pinch of salt",
+        "Add roasted broken wheat and cook until soft",
+        "In another pan, melt 200g jaggery with 1/4 cup water",
+        "Cook jaggery syrup until it reaches thread consistency",
+        "Mix the cooked broken wheat with jaggery syrup",
+        "Heat 4 tbsp ghee and add to the mixture",
+        "Add 1/2 tsp cardamom powder and mix well",
+        "Fry 10 cashews and 15 raisins in ghee until golden",
+        "Garnish with fried nuts and serve hot"
+      ]
+    },
+    {
+      "name": "Kajjikayalu",
+      "how_to_prepare": "Crescent-shaped sweet dumplings filled with coconut and jaggery, deep-fried until crispy, a traditional Rayalaseema festival sweet",
+      "stepwise_instructions": [
+        "Make dough with 2 cups refined flour, 2 tbsp oil, and water",
+        "Knead into smooth dough, cover and rest for 30 minutes",
+        "For filling: grate 1 cup fresh coconut",
+        "Cook coconut with 150g jaggery until moisture evaporates",
+        "Add 1/4 tsp cardamom powder and let it cool",
+        "Roll dough into small circles, place filling in center",
+        "Fold into crescent shape and seal edges with water",
+        "Heat oil for deep frying on medium heat",
+        "Fry kajjikayalu until golden brown and crispy",
+        "Drain on paper towels and serve when cooled"
+      ]
+    },
+    {
+      "name": "Nuvvula Laddu",
+      "how_to_prepare": "Sesame seed laddus made with roasted sesame seeds and jaggery, a nutritious sweet from Rayalaseema region, especially popular in winter",
+      "stepwise_instructions": [
+        "Dry roast 2 cups sesame seeds until they turn golden and aromatic",
+        "Let them cool and grind coarsely, keeping some texture",
+        "Make jaggery syrup with 200g jaggery and 2 tbsp water",
+        "Cook until it reaches soft ball consistency",
+        "Add the ground sesame seeds to hot jaggery syrup",
+        "Mix well and add 1/4 tsp cardamom powder",
+        "Let the mixture cool slightly until you can handle it",
+        "Apply ghee to your palms and shape into round laddus",
+        "Place on a greased plate and let them set",
+        "Store in airtight container when completely cooled"
+      ]
+    },
+    {
+      "name": "Bellam Burelu",
+      "how_to_prepare": "Jaggery-stuffed rice flour pancakes from Rayalaseema, crispy outside and sweet inside, often made during special occasions",
+      "stepwise_instructions": [
+        "Make filling by melting 150g jaggery with 1 tbsp water",
+        "Add 1/2 cup grated coconut and cook until thick",
+        "Add 1/4 tsp cardamom powder and let it cool",
+        "Make batter with 1 cup rice flour, 1/4 tsp salt, and water",
+        "Mix to smooth, thick batter consistency",
+        "Heat oil in a pan, pour batter to make small pancakes",
+        "Cook until one side is done, add filling in center",
+        "Fold the pancake and seal edges",
+        "Cook both sides until golden brown and crispy",
+        "Serve hot as a sweet snack"
+      ]
+    },
+    {
+      "name": "Rayalaseema Semiya Payasam",
+      "how_to_prepare": "Vermicelli pudding made with jaggery instead of sugar, coconut milk, and nuts, a traditional dessert from Rayalaseema region",
+      "stepwise_instructions": [
+        "Roast 1 cup vermicelli in 1 tbsp ghee until golden",
+        "Boil 3 cups milk and add roasted vermicelli",
+        "Cook until vermicelli is soft and milk thickens",
+        "Make jaggery syrup with 150g jaggery and 1/4 cup water",
+        "Strain and add to the cooked vermicelli",
+        "Add 1/2 cup coconut milk for rich flavor",
+        "Heat 2 tbsp ghee and fry cashews, raisins, and almonds",
+        "Add fried nuts to the payasam",
+        "Add 1/2 tsp cardamom powder and simmer for 5 minutes",
+        "Serve hot or chilled as preferred"
+      ]
+    },
+    {
+      "name": "Kunda",
+      "how_to_prepare": "Slow-cooked milk sweet from Rayalaseema, similar to rabri but thicker, flavored with cardamom and garnished with nuts",
+      "stepwise_instructions": [
+        "Boil 1 liter full-fat milk in a heavy-bottomed pan",
+        "Simmer on low heat, stirring occasionally",
+        "Cook for 45 minutes until milk reduces to half",
+        "Keep scraping the sides and mixing back into milk",
+        "Add 100g sugar or jaggery when milk is thick",
+        "Continue cooking until very thick consistency",
+        "Add 1/2 tsp cardamom powder and mix well",
+        "Heat 1 tbsp ghee and fry chopped almonds and pistachios",
+        "Garnish with fried nuts and serve warm or cold",
+        "Can be stored in refrigerator for 2-3 days"
+      ]
     }
   ],
   "metadata": {
@@ -645,14 +773,21 @@ function sendSuggestion(suggestion) {
 function processMessage(message) {
     const lowerMessage = message.toLowerCase();
     
-    // Greeting responses
-    if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('namaste')) {
+    // Greeting responses - check for whole words only
+    const greetingWords = ['hello', 'hi', 'namaste', 'hey'];
+    const messageWords = lowerMessage.split(/\s+/);
+    const hasGreeting = greetingWords.some(greeting => 
+        messageWords.includes(greeting) || 
+        messageWords.some(word => word === greeting || word.startsWith(greeting + ',') || word.startsWith(greeting + '!'))
+    );
+    
+    if (hasGreeting) {
         return 'Namaste! 🙏 Welcome to Rayalaseema Chef! I can help you with authentic Andhra Rayalaseema recipes. What dish would you like to learn about today?';
     }
     
-    // Help responses
-    if (lowerMessage.includes('help') || lowerMessage.includes('what can you do')) {
-        return 'I can help you with traditional Rayalaseema recipes! You can ask me:\n\n• "How to make [dish name]?"\n• "Tell me about [dish name]"\n• "Recipe for [dish name]"\n• "What is [dish name]?"\n\nI know about dishes like Ragi Sangati, Paya Curry, Gongura Mutton, Rayalaseema Chicken Fry, and many more!';
+    // Help responses - more specific matching
+    if (lowerMessage.includes('help') || lowerMessage.includes('what can you do') || lowerMessage.includes('what do you know')) {
+        return 'I can help you with traditional Rayalaseema recipes! You can ask me:\n\n• "How to make [dish name]?"\n• "Tell me about [dish name]"\n• "Recipe for [dish name]"\n• "What is [dish name]?"\n\nI know about dishes like Ragi Sangati, Paya Curry, Gongura Mutton, Rayalaseema Chicken Fry, Ariselu, Bellam Paravannam, and many more including traditional sweets!';
     }
     
     // Search for matching dish
@@ -668,24 +803,79 @@ function processMessage(message) {
     }
     
     // Default response for unmatched queries
-    return `I couldn't find information about that dish. Here are some popular Rayalaseema dishes I know about:\n\n${getPopularDishes()}\n\nTry asking "How to make Ragi Sangati?" or "Tell me about Gongura Mutton"`;
+    return `I couldn't find information about that dish. Here are some popular Rayalaseema dishes I know about:\n\n${getPopularDishes()}\n\nTry asking "How to make Ariselu?" or "Tell me about Bellam Paravannam" for sweets!`;
 }
 
-// Find matching dish in the data
+// Find matching dish in the data with improved algorithm
 function findMatchingDish(message) {
     const dishes = dishesData.dishes;
+    const cleanMessage = message.replace(/[^a-z\s]/g, '').trim();
     
-    // Direct name match
+    // Priority 1: Exact full name match
     for (let dish of dishes) {
         const dishName = dish.name.toLowerCase();
-        if (message.includes(dishName) || dishName.includes(message.replace(/[^a-z\s]/g, ''))) {
+        if (cleanMessage === dishName) {
             return dish;
         }
+        if (cleanMessage.includes(dishName)) {
+            return dish;
+        }
+    }
+    
+    // Priority 2: Check if dish name contains the user's query (most important fix)
+    for (let dish of dishes) {
+        const dishName = dish.name.toLowerCase();
+        if (dishName.includes(cleanMessage)) {
+            return dish;
+        }
+    }
+    
+    // Priority 3: Multiple word matches (most specific first)
+    let bestMatch = null;
+    let bestMatchScore = 0;
+    
+    for (let dish of dishes) {
+        const dishName = dish.name.toLowerCase();
+        const dishWords = dishName.split(' ').filter(word => word.length > 2);
+        const messageWords = cleanMessage.split(' ').filter(word => word.length > 2);
         
-        // Check for partial matches
-        const keywords = dishName.split(' ');
-        for (let keyword of keywords) {
-            if (keyword.length > 3 && message.includes(keyword)) {
+        let matchScore = 0;
+        let matchedWords = 0;
+        
+        // Count how many words from the message are in the dish name
+        for (let messageWord of messageWords) {
+            for (let dishWord of dishWords) {
+                if (dishWord.includes(messageWord) || messageWord.includes(dishWord)) {
+                    matchScore += messageWord.length; // Give score based on query word length
+                    matchedWords++;
+                    break;
+                }
+            }
+        }
+        
+        // For multi-word queries, require good coverage
+        const queryWordCount = messageWords.length;
+        const matchRatio = matchedWords / queryWordCount;
+        
+        // Accept if more than 60% of query words match and score is good
+        if (matchRatio >= 0.6 && matchScore >= 6 && matchScore > bestMatchScore) {
+            bestMatch = dish;
+            bestMatchScore = matchScore;
+        }
+    }
+    
+    if (bestMatch) {
+        return bestMatch;
+    }
+    
+    // Priority 4: Single keyword match (only if very specific)
+    for (let dish of dishes) {
+        const dishName = dish.name.toLowerCase();
+        const dishWords = dishName.split(' ').filter(word => word.length > 4); // Only longer words
+        
+        for (let dishWord of dishWords) {
+            if (cleanMessage.includes(dishWord) && dishWords.length === 1) {
+                // Only return single word matches if it's the only word in dish name
                 return dish;
             }
         }
@@ -723,7 +913,7 @@ function formatDishList() {
 
 // Get popular dishes for suggestions
 function getPopularDishes() {
-    const popular = ['Ragi Sangati', 'Paya Curry', 'Gongura Mutton', 'Rayalaseema Chicken Fry', 'Ulavacharu'];
+    const popular = ['Ragi Sangati', 'Paya Curry', 'Gongura Mutton', 'Rayalaseema Chicken Fry', 'Ulavacharu', 'Ariselu', 'Bellam Paravannam', 'Kajjikayalu'];
     return popular.map((dish, index) => `${index + 1}. ${dish}`).join('\n');
 }
 

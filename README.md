@@ -27,8 +27,10 @@ Visit: [Your Live URL Here]
 ## 🍽️ Dishes Included
 - Ragi Sangati, Paya Curry, Gongura Mutton
 - Rayalaseema Chicken Fry, Natukodi Pulusu
-- Traditional sweets like Ariselu, Bobbatlu
-- And many more authentic recipes!
+- Traditional sweets like Ariselu, Bellam Paravannam, Kajjikayalu, Nuvvula Laddu
+- Festival specials like Rayalaseema Pongal Sweet, Bellam Burelu
+- Milk-based desserts like Kunda, Semiya Payasam
+- And 50+ more authentic recipes!
 
 ## 👨‍💻 Created By
 Sainath Pulaganti
