@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rayalaseema Chef - Andhra Dishes Chatbot</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-utensils"></i>
+                    <h1>Rayalaseema Chef</h1>
+                </div>
+                <p class="subtitle">Your Personal Andhra Cuisine Assistant</p>
+            </div>
+        </header>
+
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="chef-avatar">
+                    <i class="fas fa-chef-hat"></i>
+                </div>
+                <div class="chat-info">
+                    <h3>Chef Created By Sainath Pulaganti</h3>
+                    <p class="status">Ready to help with Rayalaseema recipes!</p>
+                </div>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <div class="message-avatar">
+                        <i class="fas fa-chef-hat"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>Namaste! 🙏 Welcome to Rayalaseema Chef! I'm here to help you with authentic Andhra Rayalaseema recipes. You can ask me about any dish like "How to make Ragi Sangati?" or "Tell me about Gongura Mutton". You can also use voice input by clicking the microphone button!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-input-container">
+                <div class="input-wrapper">
+                    <input type="text" id="messageInput" placeholder="Ask me about any Rayalaseema dish..." />
+                    <div class="input-buttons">
+                        <button id="voiceBtn" class="voice-btn" title="Voice Input">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <button id="sendBtn" class="send-btn" title="Send Message">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="suggestions">
+            <h4>Try asking about:</h4>
+            <div class="suggestion-chips">
+                <button class="chip" onclick="sendSuggestion('How to make Ragi Sangati?')">Ragi Sangati</button>
+                <button class="chip" onclick="sendSuggestion('Tell me about Paya Curry')">Paya Curry</button>
+                <button class="chip" onclick="sendSuggestion('Gongura Mutton recipe')">Gongura Mutton</button>
+                <button class="chip" onclick="sendSuggestion('Rayalaseema Chicken Fry')">Chicken Fry</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Voice Recognition Status -->
+    <div id="voiceStatus" class="voice-status hidden">
+        <div class="pulse-animation"></div>
+        <p>Listening... Speak now!</p>
+    </div>
+
+    <!-- Speaker Button -->
+    <div id="speakerBtn" class="speaker-btn hidden" title="Read Aloud">
+        <i class="fas fa-volume-up"></i>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

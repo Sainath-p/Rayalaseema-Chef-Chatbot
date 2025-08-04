@@ -1,0 +1,350 @@
+{
+  "dishes": [
+    {
+      "name": "Ragi Sangati",
+      "how_to_prepare": "Traditional finger millet balls served with spicy curries, a staple food of Rayalaseema region made by cooking ragi flour with water and salt",
+      "stepwise_instructions": [
+        "Boil 3 cups of water with salt in a heavy-bottomed pan",
+        "Gradually add 1 cup ragi flour while stirring continuously to avoid lumps",
+        "Cook on medium heat for 10-15 minutes, stirring frequently",
+        "Cover and let it rest for 5 minutes",
+        "Wet your hands and shape into small balls",
+        "Serve hot with sambar, rasam, or spicy curries"
+      ]
+    },
+    {
+      "name": "Paya Curry",
+      "how_to_prepare": "Spicy mutton trotters curry slow-cooked with aromatic spices, a signature dish of Rayalaseema known for its rich flavor and gelatinous texture",
+      "stepwise_instructions": [
+        "Clean and pressure cook 1kg mutton paya for 4-5 whistles",
+        "Heat oil in a pan, add cumin seeds, bay leaves, and cinnamon",
+        "Add sliced onions and fry until golden brown",
+        "Add ginger-garlic paste, cook for 2 minutes",
+        "Add tomatoes, red chili powder, turmeric, and coriander powder",
+        "Add cooked paya with stock, simmer for 30 minutes",
+        "Garnish with coriander leaves and serve with rice or roti"
+      ]
+    },
+    {
+      "name": "Kurnool Kodi Pulao",
+      "how_to_prepare": "Aromatic chicken pulao from Kurnool district, cooked with basmati rice and traditional Rayalaseema spices in dum style",
+      "stepwise_instructions": [
+        "Marinate 500g chicken pieces with yogurt, chili powder, and turmeric for 30 minutes",
+        "Soak 2 cups basmati rice for 30 minutes",
+        "Heat ghee, add whole spices (bay leaves, cinnamon, cardamom, cloves)",
+        "Add marinated chicken and cook until 70% done",
+        "Boil water with whole spices and salt, add rice",
+        "Layer partially cooked rice over chicken",
+        "Cover with aluminum foil, then lid, cook on high heat for 3 minutes",
+        "Reduce heat and cook for 45 minutes on dum",
+        "Let it rest for 10 minutes before serving"
+      ]
+    },
+    {
+      "name": "Rayalaseema Chicken Fry",
+      "how_to_prepare": "Dry chicken fry with bold spices including red chilies and black pepper, characteristic of the spicy cuisine of Rayalaseema region",
+      "stepwise_instructions": [
+        "Cut 1kg chicken into medium pieces",
+        "Marinate with red chili powder, turmeric, ginger-garlic paste, and salt for 1 hour",
+        "Heat oil in a heavy-bottomed pan",
+        "Add curry leaves and green chilies",
+        "Add marinated chicken pieces and cook on medium heat",
+        "Stir frequently to avoid burning",
+        "Cook until chicken is well-done and dry",
+        "Sprinkle black pepper powder and serve hot"
+      ]
+    },
+    {
+      "name": "Ulavacharu",
+      "how_to_prepare": "Horse gram soup, a nutritious and flavorful soup made from sprouted horse gram, popular across Andhra Pradesh especially in Rayalaseema",
+      "stepwise_instructions": [
+        "Soak 1 cup horse gram overnight and sprout for 2 days",
+        "Pressure cook sprouted horse gram with water for 3-4 whistles",
+        "Strain and collect the clear soup",
+        "Heat ghee in a pan, add cumin seeds and hing",
+        "Add chopped onions, green chilies, and ginger",
+        "Add turmeric powder and the horse gram soup",
+        "Season with salt and simmer for 10 minutes",
+        "Garnish with coriander leaves and serve hot"
+      ]
+    },
+    {
+      "name": "Bendakaya Pulusu",
+      "how_to_prepare": "Tangy okra curry cooked in tamarind-based gravy with onions and traditional Andhra spices, a popular vegetarian dish",
+      "stepwise_instructions": [
+        "Cut 250g okra into 1-inch pieces",
+        "Heat oil in a pan and fry okra until crispy, set aside",
+        "In the same pan, add mustard seeds, cumin seeds, and curry leaves",
+        "Add sliced onions and cook until translucent",
+        "Add ginger-garlic paste and cook for 2 minutes",
+        "Add tamarind extract, turmeric, red chili powder, and salt",
+        "Add fried okra and simmer for 10 minutes",
+        "Garnish with coriander leaves and serve with rice"
+      ]
+    },
+    {
+      "name": "Gongura Pachadi",
+      "how_to_prepare": "Tangy chutney made from sorrel leaves (gongura), a signature condiment of Andhra cuisine known for its sour taste and health benefits",
+      "stepwise_instructions": [
+        "Clean and wash 2 cups fresh gongura leaves",
+        "Heat oil in a pan, add red chilies and fry until crisp",
+        "Add gongura leaves and cook until wilted",
+        "Let it cool completely",
+        "Grind with salt, garlic, and green chilies to a coarse paste",
+        "Heat oil for tempering, add mustard seeds and curry leaves",
+        "Pour tempering over the pachadi and mix well",
+        "Serve with rice and ghee"
+      ]
+    },
+    {
+      "name": "Pesarattu",
+      "how_to_prepare": "Green gram dosa, a protein-rich breakfast dish made from whole green gram, popular across Andhra Pradesh as a healthy alternative to regular dosa",
+      "stepwise_instructions": [
+        "Soak 2 cups whole green gram for 4-6 hours",
+        "Drain and grind with ginger, green chilies, and salt to a smooth batter",
+        "Add finely chopped onions, coriander leaves, and cumin seeds to batter",
+        "Heat a non-stick pan or tawa",
+        "Pour a ladle of batter and spread in circular motion",
+        "Drizzle oil around edges and cook until golden brown",
+        "Flip and cook the other side for 1-2 minutes",
+        "Serve hot with coconut chutney and sambar"
+      ]
+    },
+    {
+      "name": "Hyderabadi Biryani",
+      "how_to_prepare": "World-famous aromatic rice dish layered with marinated meat, cooked in dum style with saffron and spices, originated in Hyderabad",
+      "stepwise_instructions": [
+        "Marinate 1kg mutton with yogurt, red chili powder, turmeric, garam masala for 2 hours",
+        "Soak 750g basmati rice for 30 minutes",
+        "Fry sliced onions until golden brown and crispy",
+        "Cook marinated meat with half the fried onions until tender",
+        "Boil water with whole spices, add rice and cook 70%",
+        "Layer partially cooked rice over meat",
+        "Sprinkle remaining fried onions, mint, coriander, and saffron soaked in milk",
+        "Cover with aluminum foil, then lid",
+        "Cook on high heat for 3 minutes, then dum for 1 hour",
+        "Serve with raita, shorba, and boiled eggs"
+      ]
+    },
+    {
+      "name": "Andhra Chicken Curry",
+      "how_to_prepare": "Spicy chicken curry with coconut, curry leaves, and red chilies, representing the bold flavors of traditional Andhra cooking",
+      "stepwise_instructions": [
+        "Cut 1kg chicken into pieces and marinate with turmeric and salt",
+        "Heat coconut oil in a heavy-bottomed pan",
+        "Add curry leaves, dry red chilies, and onions",
+        "Cook onions until golden brown",
+        "Add ginger-garlic paste and cook for 2 minutes",
+        "Add tomatoes and cook until mushy",
+        "Add chicken pieces and cook until sealed",
+        "Add coconut milk, red chili powder, and coriander powder",
+        "Simmer covered for 20 minutes until chicken is cooked",
+        "Garnish with fresh coriander and serve with rice"
+      ]
+    },
+    {
+      "name": "Gutti Vankaya Koora",
+      "how_to_prepare": "Stuffed baby eggplant curry filled with spiced paste, a popular vegetarian dish showcasing the art of Andhra vegetarian cooking",
+      "stepwise_instructions": [
+        "Make slits in 250g baby brinjals keeping stem intact",
+        "Roast peanuts, sesame seeds, coriander seeds, and red chilies",
+        "Grind roasted ingredients with tamarind, jaggery, and salt",
+        "Stuff the ground paste into brinjals",
+        "Heat oil in a pan, add mustard seeds and curry leaves",
+        "Add stuffed brinjals and cook covered on low heat",
+        "Turn occasionally to cook evenly",
+        "Cook for 20-25 minutes until brinjals are tender",
+        "Serve hot with rice and dal"
+      ]
+    },
+    {
+      "name": "Chepa Pulusu",
+      "how_to_prepare": "Fish curry in tangy tamarind gravy, a coastal Andhra delicacy prepared with fresh fish and traditional spices",
+      "stepwise_instructions": [
+        "Clean and cut 500g fish into pieces",
+        "Marinate fish with turmeric and salt for 15 minutes",
+        "Heat oil and shallow fry fish pieces until golden",
+        "In the same pan, add mustard seeds and curry leaves",
+        "Add sliced onions and cook until soft",
+        "Add tamarind extract, red chili powder, and turmeric",
+        "Add tomatoes and cook until mushy",
+        "Gently add fried fish and simmer for 10 minutes",
+        "Garnish with coriander leaves and serve with rice"
+      ]
+    },
+    {
+      "name": "Pappu Charu",
+      "how_to_prepare": "Thin lentil soup tempered with spices, a comfort food in Andhra households, light and flavorful accompaniment to rice",
+      "stepwise_instructions": [
+        "Cook 1/2 cup toor dal with turmeric until soft and mushy",
+        "Extract tamarind juice from small lemon-sized ball",
+        "Heat ghee in a pan, add mustard seeds and cumin seeds",
+        "Add curry leaves, dry red chilies, and hing",
+        "Add chopped onions and green chilies",
+        "Add tamarind extract and bring to boil",
+        "Add cooked dal and mix well",
+        "Season with salt and simmer for 10 minutes",
+        "Garnish with coriander leaves and serve with rice"
+      ]
+    },
+    {
+      "name": "Pootharekulu",
+      "how_to_prepare": "Paper-thin sweet crepes layered with ghee and sugar, a traditional Andhra dessert from Atreyapuram, known for its delicate texture",
+      "stepwise_instructions": [
+        "Make a thin batter with rice flour and water",
+        "Heat a non-stick pan on low heat",
+        "Pour a thin layer of batter and spread evenly",
+        "Cook until the edges start lifting",
+        "Carefully peel off the paper-thin crepe",
+        "Brush with ghee and sprinkle powdered sugar",
+        "Layer multiple sheets with ghee and sugar",
+        "Cut into desired shapes",
+        "Store in airtight containers"
+      ]
+    },
+    {
+      "name": "Ariselu",
+      "how_to_prepare": "Traditional rice flour and jaggery sweet prepared during festivals, deep-fried until golden and crispy, a must-have during celebrations",
+      "stepwise_instructions": [
+        "Dry roast 2 cups rice flour until aromatic",
+        "Make jaggery syrup by boiling 1 cup jaggery with little water",
+        "Mix hot jaggery syrup with roasted rice flour gradually",
+        "Add sesame seeds and cardamom powder",
+        "Knead into a smooth dough when warm",
+        "Make small balls and flatten between banana leaves",
+        "Heat oil for deep frying",
+        "Fry ariselu until golden brown on both sides",
+        "Drain on paper towels and store when cool"
+      ]
+    },
+    {
+      "name": "Natukodi Pulusu",
+      "how_to_prepare": "Country chicken curry, a specialty of Rayalaseema prepared with free-range chicken in spicy tamarind gravy with traditional spices",
+      "stepwise_instructions": [
+        "Cut 1kg country chicken into pieces",
+        "Marinate with turmeric powder and salt for 30 minutes",
+        "Heat sesame oil in a heavy-bottomed pan",
+        "Add curry leaves, dry red chilies, and onions",
+        "Cook onions until golden brown",
+        "Add ginger-garlic paste and cook for 2 minutes",
+        "Add marinated chicken and cook until sealed",
+        "Add tamarind extract, red chili powder, and coriander powder",
+        "Add tomatoes and cook until soft",
+        "Simmer covered for 25-30 minutes until chicken is tender",
+        "Garnish with coriander leaves and serve with rice"
+      ]
+    },
+    {
+      "name": "Kandi Pachadi",
+      "how_to_prepare": "Toor dal chutney, a tangy and spicy accompaniment made with roasted toor dal and red chilies, popular across Rayalaseema",
+      "stepwise_instructions": [
+        "Dry roast 1/2 cup toor dal until golden and aromatic",
+        "Roast 4-5 red chilies until crisp",
+        "Let both cool completely",
+        "Grind roasted dal and chilies with salt to a coarse powder",
+        "Add tamarind extract and grind to a thick paste",
+        "Heat oil for tempering, add mustard seeds and curry leaves",
+        "Add hing and pour over the pachadi",
+        "Mix well and serve with rice and ghee"
+      ]
+    },
+    {
+      "name": "Bobbatlu (Puran Poli)",
+      "how_to_prepare": "Sweet stuffed flatbread filled with jaggery and lentil mixture, a traditional festive dessert especially popular during Ugadi",
+      "stepwise_instructions": [
+        "Cook 1 cup chana dal until soft and drain excess water",
+        "Mash the dal and add 1 cup jaggery",
+        "Cook the mixture until thick, add cardamom powder",
+        "Make dough with maida, oil, and water",
+        "Roll small portions of dough, place filling in center",
+        "Seal edges and roll gently into flatbread",
+        "Cook on tawa with ghee until golden spots appear",
+        "Serve hot with milk or ghee"
+      ]
+    },
+    {
+      "name": "Rayalaseema Mutton Curry",
+      "how_to_prepare": "Spicy mutton curry cooked with onions, tomatoes and aromatic spices, known for its robust flavor and tender meat",
+      "stepwise_instructions": [
+        "Cut 1kg mutton into medium pieces",
+        "Marinate with yogurt, red chili powder, turmeric, and salt for 1 hour",
+        "Heat sesame oil in a pressure cooker",
+        "Add whole spices (bay leaves, cinnamon, cardamom)",
+        "Add sliced onions and cook until golden brown",
+        "Add ginger-garlic paste and cook for 2 minutes",
+        "Add marinated mutton and cook until sealed",
+        "Add tomatoes and cook until soft",
+        "Pressure cook for 4-5 whistles",
+        "Garnish with mint and coriander leaves"
+      ]
+    },
+    {
+      "name": "Gongura Mutton",
+      "how_to_prepare": "Mutton cooked with sorrel leaves (gongura), a signature dish of Rayalaseema combining tangy gongura with spicy mutton",
+      "stepwise_instructions": [
+        "Clean and chop 2 cups fresh gongura leaves",
+        "Cut 750g mutton into pieces and marinate with turmeric and salt",
+        "Heat oil in a heavy-bottomed pan",
+        "Add red chilies and fry until crisp",
+        "Add mutton pieces and cook until sealed",
+        "Add ginger-garlic paste and cook for 3 minutes",
+        "Add gongura leaves and cook until wilted",
+        "Add red chili powder and coriander powder",
+        "Cook covered for 45 minutes until mutton is tender",
+        "Serve hot with rice or roti"
+      ]
+    },
+    {
+      "name": "Nalla Karam",
+      "how_to_prepare": "Black sesame seed powder mixed with spices, a traditional condiment of Rayalaseema region served with rice and ghee",
+      "stepwise_instructions": [
+        "Dry roast 1 cup black sesame seeds until aromatic",
+        "Roast 3-4 red chilies until crisp",
+        "Let both cool completely",
+        "Grind sesame seeds to a fine powder",
+        "Grind red chilies separately",
+        "Mix both powders with salt and hing",
+        "Store in airtight container",
+        "Serve mixed with rice, ghee, and a pinch of salt"
+      ]
+    },
+    {
+      "name": "Kadapa Kodi Kura",
+      "how_to_prepare": "Spicy chicken curry from Kadapa district, cooked with coconut and special blend of roasted spices unique to the region",
+      "stepwise_instructions": [
+        "Cut 1kg chicken into pieces",
+        "Roast coriander seeds, cumin seeds, and red chilies",
+        "Grind roasted spices with coconut to a paste",
+        "Marinate chicken with turmeric and salt",
+        "Heat coconut oil in a pan",
+        "Add curry leaves and onions, cook until golden",
+        "Add ginger-garlic paste and cook for 2 minutes",
+        "Add chicken and cook until sealed",
+        "Add ground spice paste and cook for 5 minutes",
+        "Add water as needed and simmer until chicken is cooked",
+        "Garnish with coriander leaves"
+      ]
+    },
+    {
+      "name": "Chintakaya Pappu",
+      "how_to_prepare": "Tamarind dal, a tangy lentil curry made with tamarind and vegetables, a comfort food staple in Rayalaseema households",
+      "stepwise_instructions": [
+        "Cook 1 cup toor dal with turmeric until soft",
+        "Soak tamarind in water and extract thick juice",
+        "Heat oil in a pan, add mustard seeds and cumin seeds",
+        "Add curry leaves, dry red chilies, and hing",
+        "Add chopped onions and green chilies",
+        "Add any vegetables like drumsticks or okra if desired",
+        "Add tamarind extract and bring to boil",
+        "Add cooked dal and mix well",
+        "Season with salt and red chili powder",
+        "Simmer for 15 minutes and serve with rice"
+      ]
+    }
+  ],
+  "metadata": {
+    "region": "Rayalaseema",
+    "cuisine": "Andhra",
+    "description": "A collection of traditional dishes from the Rayalaseema region of Andhra Pradesh, known for its rich flavors and unique cooking techniques."
+  }
+}
