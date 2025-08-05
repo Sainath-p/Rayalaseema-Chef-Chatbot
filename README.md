@@ -1,33 +1,32 @@
 # Rayalaseema Chef - Andhra Dishes Chatbot
 
-An interactive chatbot for authentic Rayalaseema region dishes with voice support.
+An interactive voice-enabled chatbot for authentic Rayalaseema region dishes with smart resume functionality.
 
 ## 🍛 Features
-- 23 authentic Rayalaseema recipes
-- Voice input support
-- Text-to-speech with female voice
-- Play/Pause/Resume functionality
-- Beautiful Indian-themed UI
-- Mobile responsive design
+- 40+ authentic Rayalaseema recipes including traditional sweets
+- Voice input support with speech recognition
+- Text-to-speech with optimized female voice
+- Smart play/pause/resume functionality that remembers position
+- Beautiful Indian-themed responsive UI
+- Progressive Web App (PWA) support
+- Mobile and desktop optimized
 
-## 🚀 Live Demo
-Visit: [Your Live URL Here]
-
-## 🛠️ Local Setup
-1. Download all files
-2. Open `RayalaseemaDishesChatbot.html` in your browser
-3. Or run `python server.py` for local server at http://localhost:8000
+## � Quick Start
+1. Download all files to a folder
+2. Open `RayalaseemaDishesChatbot.html` in your web browser
+3. Start asking about Rayalaseema dishes!
 
 ## 📱 Usage
-- Type questions like "How to make Ragi Sangati?"
-- Use voice input by clicking the microphone
-- Click Play button to hear recipes read aloud
-- Try suggestion chips for quick access
+- **Text Input**: Type questions like "How to make Ragi Sangati?" or "Tell me about Ariselu"
+- **Voice Input**: Click the microphone button and speak your question
+- **Audio Playback**: Click Play button to hear recipes read aloud
+- **Smart Resume**: Pause long recipes and resume from where you left off
+- **Suggestions**: Use suggestion chips for quick access to popular dishes
 
 ## 🍽️ Dishes Included
-- Ragi Sangati, Paya Curry, Gongura Mutton
-- Rayalaseema Chicken Fry, Natukodi Pulusu
-- Traditional sweets like Ariselu, Bellam Paravannam, Kajjikayalu, Nuvvula Laddu
+**Main Dishes**: Ragi Sangati, Paya Curry, Gongura Mutton, Rayalaseema Chicken Fry, Natukodi Pulusu, Kurnool Kodi Pulao, Ulavacharu, and many more...
+
+**Traditional Sweets**: Ariselu, Bellam Paravannam, Kajjikayalu, Nuvvula Laddu, Bobbatlu, Madatha Kaja, Pootharekulu, Sunni Undalu
 - Festival specials like Rayalaseema Pongal Sweet, Bellam Burelu
 - Milk-based desserts like Kunda, Semiya Payasam
 - And 50+ more authentic recipes!

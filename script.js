@@ -489,10 +489,18 @@ let currentPlayingButton = null;
 let selectedVoice = null;
 let playbackStartTime = 0;
 let currentPlaybackPosition = 0;
+let currentTextSegments = [];
+let currentSegmentIndex = 0;
+let segmentStartTimes = [];
+
+// Check if device is mobile for optimized settings
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+           (window.innerWidth <= 768);
+}
 
 // Initialize the chatbot
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Dishes data loaded successfully:', dishesData);
     initializeSpeechRecognition();
     setupEventListeners();
     loadVoices();
@@ -529,7 +537,6 @@ function loadVoices() {
 // Select the best available female voice
 function selectBestFemaleVoice() {
     const voices = synthesis.getVoices();
-    console.log('Available voices:', voices.map(v => `${v.name} (${v.lang}) - ${v.gender || 'unknown gender'}`));
     
     // Priority order for female voices (most preferred first)
     const preferredFemaleVoices = [
@@ -558,7 +565,6 @@ function selectBestFemaleVoice() {
         );
         if (voice) {
             selectedVoice = voice;
-            console.log('Selected preferred voice:', voice.name);
             populateVoiceSelect(voices);
             return;
         }
@@ -583,7 +589,6 @@ function selectBestFemaleVoice() {
     
     if (femaleVoice) {
         selectedVoice = femaleVoice;
-        console.log('Selected female voice:', femaleVoice.name);
         populateVoiceSelect(voices);
         return;
     }
@@ -596,14 +601,12 @@ function selectBestFemaleVoice() {
     
     if (englishVoice) {
         selectedVoice = englishVoice;
-        console.log('Selected English voice:', englishVoice.name);
         populateVoiceSelect(voices);
         return;
     }
     
     // Final fallback - use default
     selectedVoice = voices[0];
-    console.log('Using default voice:', selectedVoice?.name || 'System default');
     populateVoiceSelect(voices);
 }
 
@@ -672,7 +675,6 @@ function changeVoice() {
     const voices = synthesis.getVoices();
     
     selectedVoice = voices.find(voice => voice.name === selectedVoiceName);
-    console.log('Voice changed to:', selectedVoice?.name);
 }
 
 // Test the selected voice
@@ -726,7 +728,7 @@ function initializeSpeechRecognition() {
             addBotMessage('Sorry, I couldn\'t understand what you said. Please try again or type your question.');
         };
     } else {
-        console.log('Speech recognition not supported');
+        // Hide voice button if speech recognition is not supported
         document.getElementById('voiceBtn').style.display = 'none';
     }
 }
@@ -983,6 +985,10 @@ function addBotMessage(message) {
     
     messageDiv.id = messageId;
     chatMessages.appendChild(messageDiv);
+    
+    // Add timer suggestions if recipe instructions contain timing information
+    addTimerSuggestions(message, messageDiv);
+    
     scrollToBottom();
 }
 
@@ -1019,7 +1025,7 @@ function scrollToBottom() {
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-// Toggle play/pause for individual messages
+// Toggle play/pause for individual messages with smart resume
 function togglePlayPause(messageId, buttonElement) {
     const messageText = decodeURIComponent(buttonElement.getAttribute('data-message'));
     const icon = buttonElement.querySelector('i');
@@ -1029,12 +1035,19 @@ function togglePlayPause(messageId, buttonElement) {
     if (currentPlayingButton && currentPlayingButton !== buttonElement && isPlaying) {
         synthesis.cancel();
         resetButton(currentPlayingButton);
+        // Reset state for new message
+        currentPlayingButton = null;
+        isPlaying = false;
+        isPaused = false;
+        currentPlaybackPosition = 0;
+        currentTextSegments = [];
+        currentSegmentIndex = 0;
     }
     
     // If this is the currently playing message
     if (currentPlayingButton === buttonElement) {
         if (isPlaying && !isPaused) {
-            // Currently playing - stop it (mobile-friendly approach)
+            // Currently playing - pause it and track position
             synthesis.cancel();
             isPaused = true;
             isPlaying = false;
@@ -1043,13 +1056,19 @@ function togglePlayPause(messageId, buttonElement) {
             icon.className = 'fas fa-play';
             text.textContent = 'Resume';
             
-            // Store current position for resume (approximate)
-            currentPlaybackPosition = Date.now() - playbackStartTime;
+            // Calculate how much time has elapsed
+            const elapsedTime = Date.now() - playbackStartTime;
+            currentPlaybackPosition = elapsedTime;
+            
+            // Store the current segment index for resume
+            if (currentTextSegments.length > 0) {
+                currentSegmentIndex = getCurrentSegmentIndex(currentTextSegments, elapsedTime);
+            }
+            
         } else if (isPaused) {
-            // Currently paused - restart from beginning (mobile-friendly)
+            // Currently paused - resume from where we left off
             isPaused = false;
-            // For mobile compatibility, restart the entire message
-            startPlayback(messageText, buttonElement);
+            resumePlaybackFromPosition(messageText, buttonElement);
         }
         return;
     }
@@ -1058,13 +1077,10 @@ function togglePlayPause(messageId, buttonElement) {
     startPlayback(messageText, buttonElement);
 }
 
-// Start playback for a new message (mobile-optimized)
-function startPlayback(messageText, buttonElement) {
+// Resume playback from stored position with smart segment detection
+function resumePlaybackFromPosition(messageText, buttonElement) {
     const icon = buttonElement.querySelector('i');
     const text = buttonElement.querySelector('span');
-    
-    // Stop any current playback first
-    synthesis.cancel();
     
     // Clean text for speech
     const cleanText = messageText
@@ -1072,91 +1088,118 @@ function startPlayback(messageText, buttonElement) {
         .replace(/🍛|🍽️|✨|🙏/g, '')
         .replace(/\n/g, '. ');
     
-    // Set current playing button
+    // Get remaining text from current segment
+    let textToSpeak = cleanText;
+    if (currentTextSegments.length > 0 && currentSegmentIndex < currentTextSegments.length) {
+        // Resume from current segment onwards
+        const remainingSegments = currentTextSegments.slice(currentSegmentIndex);
+        textToSpeak = remainingSegments.join(' ');
+        
+        // Ensure proper spacing between sentences
+        textToSpeak = textToSpeak.replace(/([.!?])([A-Z])/g, '$1 $2');
+    }
+    
+    // Set button state
     currentPlayingButton = buttonElement;
     isPlaying = true;
     isPaused = false;
     playbackStartTime = Date.now();
     
-    // Update button state to playing
+    // Update button visual state
     buttonElement.classList.remove('paused');
     buttonElement.classList.add('playing');
     icon.className = 'fas fa-pause';
     text.textContent = 'Pause';
     
-    // Use mobile-optimized speech function
+    // Start speech synthesis
+    startSpeechWithText(textToSpeak, buttonElement);
+}
+
+// Start speech synthesis with given text
+function startSpeechWithText(textToSpeak, buttonElement) {
+    // Stop any current playback first
+    synthesis.cancel();
+    
+    // Create new utterance
+    currentUtterance = new SpeechSynthesisUtterance(textToSpeak);
+    
+    // Configure voice settings
+    if (selectedVoice) {
+        currentUtterance.voice = selectedVoice;
+    }
+    
+    // Optimize settings for mobile and desktop
     if (isMobileDevice()) {
-        // Mobile-specific approach with longer delay
-        setTimeout(() => {
-            currentUtterance = new SpeechSynthesisUtterance(cleanText);
-            
-            if (selectedVoice) {
-                currentUtterance.voice = selectedVoice;
-            }
-            
-            // Mobile-optimized settings
-            currentUtterance.rate = 0.8;   // Slower for mobile
-            currentUtterance.pitch = 1.1;  // Feminine tone  
-            currentUtterance.volume = 1.0; // Full volume
-            
-            // Event handlers
-            currentUtterance.onend = function() {
-                resetButton(buttonElement);
-                currentPlayingButton = null;
-                isPlaying = false;
-                isPaused = false;
-                playbackStartTime = 0;
-                currentPlaybackPosition = 0;
-            };
-            
-            currentUtterance.onerror = function(event) {
-                console.error('Speech synthesis error:', event.error);
-                resetButton(buttonElement);
-                currentPlayingButton = null;
-                isPlaying = false;
-                isPaused = false;
-                playbackStartTime = 0;
-                currentPlaybackPosition = 0;
-            };
-            
-            synthesis.speak(currentUtterance);
-        }, 300); // Longer delay for mobile
+        currentUtterance.rate = 0.8;   // Slower for mobile
+        currentUtterance.pitch = 1.1;  // Feminine tone  
+        currentUtterance.volume = 1.0; // Full volume
     } else {
-        // Desktop approach
-        currentUtterance = new SpeechSynthesisUtterance(cleanText);
-        
-        if (selectedVoice) {
-            currentUtterance.voice = selectedVoice;
-        }
-        
         currentUtterance.rate = 0.85;
         currentUtterance.pitch = 1.1;
         currentUtterance.volume = 1.0;
-        
-        // Event handlers
-        currentUtterance.onend = function() {
-            resetButton(buttonElement);
-            currentPlayingButton = null;
-            isPlaying = false;
-            isPaused = false;
-            playbackStartTime = 0;
-            currentPlaybackPosition = 0;
-        };
-        
-        currentUtterance.onerror = function(event) {
-            console.error('Speech synthesis error:', event.error);
-            resetButton(buttonElement);
-            currentPlayingButton = null;
-            isPlaying = false;
-            isPaused = false;
-            playbackStartTime = 0;
-            currentPlaybackPosition = 0;
-        };
-        
-        setTimeout(() => {
-            synthesis.speak(currentUtterance);
-        }, 100);
     }
+    
+    // Event handlers
+    currentUtterance.onend = function() {
+        resetButton(buttonElement);
+        currentPlayingButton = null;
+        isPlaying = false;
+        isPaused = false;
+        playbackStartTime = 0;
+        currentPlaybackPosition = 0;
+        currentTextSegments = [];
+        currentSegmentIndex = 0;
+    };
+    
+    currentUtterance.onerror = function(event) {
+        console.error('Speech synthesis error:', event.error);
+        resetButton(buttonElement);
+        currentPlayingButton = null;
+        isPlaying = false;
+        isPaused = false;
+        playbackStartTime = 0;
+        currentPlaybackPosition = 0;
+        currentTextSegments = [];
+        currentSegmentIndex = 0;
+    };
+    
+    // Start speaking with appropriate delay for mobile
+    const delay = isMobileDevice() ? 300 : 100;
+    setTimeout(() => {
+        synthesis.speak(currentUtterance);
+    }, delay);
+}
+
+// Now update the startPlayback function to initialize text segments
+function startPlayback(messageText, buttonElement) {
+    const icon = buttonElement.querySelector('i');
+    const text = buttonElement.querySelector('span');
+    
+    // Clean text for speech
+    const cleanText = messageText
+        .replace(/\*\*(.*?)\*\*/g, '$1')
+        .replace(/🍛|🍽️|✨|🙏/g, '')
+        .replace(/\n/g, '. ');
+    
+    // Initialize tracking for new message
+    currentPlaybackPosition = 0;
+    currentTextSegments = segmentTextForResume(cleanText);
+    currentSegmentIndex = 0;
+    
+    // Set button state
+    currentPlayingButton = buttonElement;
+    isPlaying = true;
+    isPaused = false;
+    playbackStartTime = Date.now();
+    
+    // Update button visual state
+    buttonElement.classList.remove('paused');
+    buttonElement.classList.add('playing');
+    icon.className = 'fas fa-pause';
+    text.textContent = 'Pause';
+    
+    // Start playback
+    startSpeechWithText(cleanText, buttonElement);
 }
 
 // Reset button to initial state
@@ -1169,54 +1212,300 @@ function resetButton(buttonElement) {
     text.textContent = 'Play';
 }
 
-// Mobile device detection
-function isMobileDevice() {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
-           (navigator.maxTouchPoints && navigator.maxTouchPoints > 2);
+// Segment text for smart resume functionality
+function segmentTextForResume(text) {
+    // Simple word-based segmentation for reliable cross-browser performance
+    const words = text.split(/\s+/);
+    const segments = [];
+    
+    // Create segments of approximately 15-25 words each
+    const segmentSize = 20;
+    
+    for (let i = 0; i < words.length; i += segmentSize) {
+        const segment = words.slice(i, i + segmentSize).join(' ');
+        if (segment.trim().length > 0) {
+            segments.push(segment.trim());
+        }
+    }
+    
+    // If text is very short, just use it as one segment
+    if (segments.length === 0) {
+        segments.push(text);
+    }
+    
+    return segments;
 }
 
-// Enhanced speech synthesis for mobile
-function speakTextMobile(text, buttonElement) {
-    // For mobile devices, ensure synthesis is completely stopped first
-    if (isMobileDevice()) {
-        synthesis.cancel();
+// Calculate which segment we should be at based on elapsed time
+function getCurrentSegmentIndex(segments, elapsedTimeMs) {
+    if (!segments || segments.length === 0) return 0;
+    
+    // More conservative approach for cross-browser compatibility
+    const speakingRate = isMobileDevice() ? 150 : 180; // words per minute
+    const elapsedMinutes = elapsedTimeMs / (1000 * 60);
+    
+    // Calculate words spoken
+    const wordsSpoken = elapsedMinutes * speakingRate;
+    
+    let totalWords = 0;
+    for (let i = 0; i < segments.length; i++) {
+        const segmentWords = segments[i].split(/\s+/).length;
         
-        // Wait a bit longer for mobile browsers to reset
-        setTimeout(() => {
-            const utterance = new SpeechSynthesisUtterance(text);
-            
-            if (selectedVoice) {
-                utterance.voice = selectedVoice;
-            }
-            
-            // Mobile-optimized settings
-            utterance.rate = 0.8;   // Slower for mobile clarity
-            utterance.pitch = 1.1;  // Feminine tone
-            utterance.volume = 1.0; // Max volume for mobile
-            
-            // Force refresh voices on mobile
-            const voices = synthesis.getVoices();
-            if (voices.length > 0 && !selectedVoice) {
-                const femaleVoice = voices.find(voice => 
-                    voice.name.toLowerCase().includes('female') ||
-                    voice.name.toLowerCase().includes('woman') ||
-                    voice.name.toLowerCase().includes('samantha') ||
-                    voice.name.toLowerCase().includes('zira')
-                ) || voices[0];
-                utterance.voice = femaleVoice;
-            }
-            
-            synthesis.speak(utterance);
-        }, 200);
-    } else {
-        // Desktop - use regular approach
-        const utterance = new SpeechSynthesisUtterance(text);
-        if (selectedVoice) {
-            utterance.voice = selectedVoice;
+        // Check if we're still within this segment
+        if (totalWords + segmentWords >= wordsSpoken) {
+            return Math.max(0, i);
         }
-        utterance.rate = 0.85;
-        utterance.pitch = 1.1;
-        utterance.volume = 1.0;
-        synthesis.speak(utterance);
+        
+        totalWords += segmentWords;
+        // Add buffer for pauses between segments (~2 seconds = 6 words at 180 wpm)
+        totalWords += 6;
+    }
+    
+    // If we've gone through all segments, return the last one
+    return Math.max(0, segments.length - 1);
+}
+
+// ========================
+// COOKING TIMER FUNCTIONALITY
+// ========================
+
+let timerInterval = null;
+let timerSeconds = 0;
+let isTimerRunning = false;
+let isTimerPaused = false;
+
+// Toggle timer widget visibility
+function toggleTimer() {
+    const timer = document.getElementById('cookingTimer');
+    timer.classList.toggle('expanded');
+}
+
+// Set quick timer (in seconds)
+function setQuickTimer(seconds) {
+    timerSeconds = seconds;
+    updateTimerDisplay();
+    
+    // Expand timer if collapsed
+    const timer = document.getElementById('cookingTimer');
+    if (!timer.classList.contains('expanded')) {
+        timer.classList.add('expanded');
     }
 }
+
+// Set custom timer from input fields
+function setCustomTimer() {
+    const minutes = parseInt(document.getElementById('customMinutes').value) || 0;
+    const seconds = parseInt(document.getElementById('customSeconds').value) || 0;
+    
+    if (minutes === 0 && seconds === 0) {
+        alert('Please enter a valid time!');
+        return;
+    }
+    
+    timerSeconds = (minutes * 60) + seconds;
+    updateTimerDisplay();
+    
+    // Clear input fields
+    document.getElementById('customMinutes').value = '';
+    document.getElementById('customSeconds').value = '';
+}
+
+// Start timer
+function startTimer() {
+    if (timerSeconds <= 0) {
+        alert('Please set a timer first!');
+        return;
+    }
+    
+    isTimerRunning = true;
+    isTimerPaused = false;
+    
+    // Update button visibility
+    document.querySelector('.start-btn').style.display = 'none';
+    document.querySelector('.pause-btn').style.display = 'flex';
+    
+    // Add active class for styling
+    document.querySelector('.timer-display').classList.add('active');
+    
+    // Start countdown
+    timerInterval = setInterval(() => {
+        timerSeconds--;
+        updateTimerDisplay();
+        
+        // Warning when 1 minute left
+        if (timerSeconds === 60) {
+            document.querySelector('.timer-display').classList.add('warning');
+            showTimerNotification('⏰ 1 Minute Left!', 'Almost done!');
+        }
+        
+        // Timer finished
+        if (timerSeconds <= 0) {
+            timerFinished();
+        }
+    }, 1000);
+}
+
+// Pause timer
+function pauseTimer() {
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+    
+    isTimerRunning = false;
+    isTimerPaused = true;
+    
+    // Update button visibility
+    document.querySelector('.start-btn').style.display = 'flex';
+    document.querySelector('.start-btn').innerHTML = '<i class="fas fa-play"></i> Resume';
+    document.querySelector('.pause-btn').style.display = 'none';
+    
+    // Remove active class
+    document.querySelector('.timer-display').classList.remove('active');
+}
+
+// Reset timer
+function resetTimer() {
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+    
+    timerSeconds = 0;
+    isTimerRunning = false;
+    isTimerPaused = false;
+    
+    // Reset button visibility
+    document.querySelector('.start-btn').style.display = 'flex';
+    document.querySelector('.start-btn').innerHTML = '<i class="fas fa-play"></i> Start';
+    document.querySelector('.pause-btn').style.display = 'none';
+    
+    // Remove styling classes
+    document.querySelector('.timer-display').classList.remove('active', 'warning');
+    
+    updateTimerDisplay();
+}
+
+// Update timer display
+function updateTimerDisplay() {
+    const minutes = Math.floor(timerSeconds / 60);
+    const seconds = timerSeconds % 60;
+    const displayText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    document.getElementById('timerDisplay').textContent = displayText;
+}
+
+// Timer finished
+function timerFinished() {
+    resetTimer();
+    
+    // Show notification
+    showTimerNotification('🍳 Timer Finished!', 'Your cooking time is up!');
+    
+    // Play notification sound (using speech)
+    if (synthesis && selectedVoice) {
+        const announcement = new SpeechSynthesisUtterance('Timer finished! Your cooking time is up!');
+        announcement.voice = selectedVoice;
+        announcement.rate = 1.0;
+        announcement.pitch = 1.2;
+        announcement.volume = 1.0;
+        synthesis.speak(announcement);
+    }
+    
+    // Browser notification if permission granted
+    if ('Notification' in window && Notification.permission === 'granted') {
+        new Notification('🍳 Rayalaseema Chef Timer', {
+            body: 'Your cooking time is up!',
+            icon: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Ctext x="50" y="60" font-size="40" text-anchor="middle"%3E🍛%3C/text%3E%3C/svg%3E'
+        });
+    }
+}
+
+// Show timer notification popup
+function showTimerNotification(title, message) {
+    // Remove existing notification
+    const existingNotification = document.querySelector('.timer-notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // Create notification
+    const notification = document.createElement('div');
+    notification.className = 'timer-notification';
+    notification.innerHTML = `
+        <h3>${title}</h3>
+        <p>${message}</p>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Auto remove after 3 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.remove();
+        }
+    }, 3000);
+}
+
+// Auto-detect timer mentions in recipes and suggest quick timers
+function detectTimerInText(text) {
+    const timerPatterns = [
+        /(\d+)\s*(?:minutes?|mins?)/gi,
+        /(\d+)\s*(?:seconds?|secs?)/gi,
+        /(\d+)\s*(?:hours?|hrs?)/gi
+    ];
+    
+    const suggestions = [];
+    
+    timerPatterns.forEach((pattern, index) => {
+        const matches = text.match(pattern);
+        if (matches) {
+            matches.forEach(match => {
+                const time = parseInt(match);
+                if (time > 0 && time <= 180) { // Max 3 hours
+                    let seconds;
+                    if (index === 0) seconds = time * 60; // minutes
+                    else if (index === 1) seconds = time; // seconds  
+                    else if (index === 2) seconds = time * 3600; // hours
+                    
+                    if (seconds <= 10800) { // Max 3 hours in seconds
+                        suggestions.push({ text: match, seconds: seconds });
+                    }
+                }
+            });
+        }
+    });
+    
+    return suggestions;
+}
+
+// Add timer suggestions to recipe messages
+function addTimerSuggestions(messageText, messageElement) {
+    const suggestions = detectTimerInText(messageText);
+    
+    if (suggestions.length > 0) {
+        const suggestionsDiv = document.createElement('div');
+        suggestionsDiv.className = 'timer-suggestions';
+        suggestionsDiv.innerHTML = `
+            <div class="suggestions-header">
+                <i class="fas fa-clock"></i>
+                <span>Quick Timer:</span>
+            </div>
+            <div class="suggestions-buttons">
+                ${suggestions.map(s => 
+                    `<button class="timer-suggestion-btn" onclick="setQuickTimer(${s.seconds})">${s.text}</button>`
+                ).join('')}
+            </div>
+        `;
+        
+        messageElement.appendChild(suggestionsDiv);
+    }
+}
+
+// Request notification permission on page load
+document.addEventListener('DOMContentLoaded', function() {
+    if ('Notification' in window && Notification.permission === 'default') {
+        Notification.requestPermission();
+    }
+});
+
+// End of script

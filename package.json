@@ -4,9 +4,9 @@
   "description": "Interactive chatbot for authentic Andhra Rayalaseema dishes with voice support",
   "main": "RayalaseemaDishesChatbot.html",
   "scripts": {
-    "start": "python server.py",
+    "start": "echo 'Open RayalaseemaDishesChatbot.html in your browser'",
     "build": "echo 'Static files ready for deployment'",
-    "dev": "python server.py"
+    "dev": "echo 'Open RayalaseemaDishesChatbot.html in your browser for development'"
   },
   "keywords": [
     "andhra-pradesh",

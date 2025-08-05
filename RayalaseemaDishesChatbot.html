@@ -95,6 +95,47 @@
         </div>
     </div>
 
+    <!-- Cooking Timer Widget -->
+    <div id="cookingTimer" class="cooking-timer">
+        <div class="timer-header">
+            <i class="fas fa-clock"></i>
+            <span>Cooking Timer</span>
+            <button class="timer-toggle" onclick="toggleTimer()">
+                <i class="fas fa-chevron-up"></i>
+            </button>
+        </div>
+        <div class="timer-content">
+            <div class="timer-display">
+                <span id="timerDisplay">00:00</span>
+            </div>
+            <div class="timer-controls">
+                <div class="quick-timers">
+                    <button class="quick-timer-btn" onclick="setQuickTimer(300)">5 min</button>
+                    <button class="quick-timer-btn" onclick="setQuickTimer(600)">10 min</button>
+                    <button class="quick-timer-btn" onclick="setQuickTimer(900)">15 min</button>
+                    <button class="quick-timer-btn" onclick="setQuickTimer(1200)">20 min</button>
+                    <button class="quick-timer-btn" onclick="setQuickTimer(1800)">30 min</button>
+                </div>
+                <div class="custom-timer">
+                    <input type="number" id="customMinutes" placeholder="Min" min="1" max="180">
+                    <input type="number" id="customSeconds" placeholder="Sec" min="0" max="59">
+                    <button class="set-timer-btn" onclick="setCustomTimer()">Set</button>
+                </div>
+                <div class="timer-actions">
+                    <button class="timer-btn start-btn" onclick="startTimer()">
+                        <i class="fas fa-play"></i> Start
+                    </button>
+                    <button class="timer-btn pause-btn" onclick="pauseTimer()" style="display: none;">
+                        <i class="fas fa-pause"></i> Pause
+                    </button>
+                    <button class="timer-btn reset-btn" onclick="resetTimer()">
+                        <i class="fas fa-stop"></i> Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Voice Recognition Status -->
     <div id="voiceStatus" class="voice-status hidden">
         <div class="pulse-animation"></div>
