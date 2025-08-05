@@ -1,8 +1,31 @@
+/**
+ * Rayalaseema Chef - Interactive Chatbot for Authentic Andhra Recipes
+ * 
+ * This chatbot provides an interactive experience for learning traditional
+ * Rayalaseema cuisine with voice support and smart recipe management.
+ * 
+ * Features:
+ * - 24+ authentic Rayalaseema recipes
+ * - Voice recognition and text-to-speech
+ * - Recipe scaling and favorites
+ * - Ingredient-based search
+ * - Mobile-optimized interface
+ * 
+ * @author Sainath Pulaganti
+ * @version 2.0.0
+ * @license MIT
+ */
+
 // Embedded dishes data to avoid CORS issues
 let dishesData = {
   "dishes": [
     {
       "name": "Ragi Sangati",
+      "ingredients": ["ragi flour", "water", "salt"],
+      "servings": 4,
+      "cooking_time": "25 minutes",
+      "difficulty": "easy",
+      "category": "main course",
       "how_to_prepare": "Traditional finger millet balls served with spicy curries, a staple food of Rayalaseema region made by cooking ragi flour with water and salt",
       "stepwise_instructions": [
         "Boil 3 cups of water with salt in a heavy-bottomed pan",
@@ -15,6 +38,11 @@ let dishesData = {
     },
     {
       "name": "Paya Curry",
+      "ingredients": ["mutton paya (trotters)", "onions", "ginger-garlic paste", "tomatoes", "red chili powder", "turmeric powder", "coriander powder", "cumin seeds", "bay leaves", "cinnamon", "oil", "salt"],
+      "servings": 4,
+      "cooking_time": "60 minutes",
+      "difficulty": "medium",
+      "category": "main course",
       "how_to_prepare": "Spicy mutton trotters curry slow-cooked with aromatic spices, a signature dish of Rayalaseema known for its rich flavor and gelatinous texture",
       "stepwise_instructions": [
         "Clean and pressure cook 1kg mutton paya for 4-5 whistles",
@@ -28,6 +56,11 @@ let dishesData = {
     },
     {
       "name": "Kurnool Kodi Pulao",
+      "ingredients": ["chicken pieces", "basmati rice", "yogurt", "red chili powder", "turmeric powder", "ghee", "bay leaves", "cinnamon", "cardamom", "cloves", "onions", "whole spices", "salt"],
+      "servings": 4,
+      "cooking_time": "90 minutes",
+      "difficulty": "medium",
+      "category": "main course",
       "how_to_prepare": "Aromatic chicken pulao from Kurnool district, cooked with basmati rice and traditional Rayalaseema spices in dum style",
       "stepwise_instructions": [
         "Marinate 500g chicken pieces with yogurt, chili powder, and turmeric for 30 minutes",
@@ -43,6 +76,11 @@ let dishesData = {
     },
     {
       "name": "Rayalaseema Chicken Fry",
+      "ingredients": ["chicken pieces", "red chili powder", "turmeric powder", "ginger-garlic paste", "black pepper powder", "curry leaves", "green chilies", "oil", "salt"],
+      "servings": 4,
+      "cooking_time": "40 minutes",
+      "difficulty": "easy",
+      "category": "main course",
       "how_to_prepare": "Dry chicken fry with bold spices including red chilies and black pepper, characteristic of the spicy cuisine of Rayalaseema region",
       "stepwise_instructions": [
         "Cut 1kg chicken into medium pieces",
@@ -57,6 +95,11 @@ let dishesData = {
     },
     {
       "name": "Ulavacharu",
+      "ingredients": ["horse gram", "cumin seeds", "hing (asafoetida)", "onions", "green chilies", "ginger", "turmeric powder", "ghee", "coriander leaves", "salt"],
+      "servings": 4,
+      "cooking_time": "35 minutes",
+      "difficulty": "easy",
+      "category": "soup",
       "how_to_prepare": "Horse gram soup, a nutritious and flavorful soup made from sprouted horse gram, popular across Andhra Pradesh especially in Rayalaseema",
       "stepwise_instructions": [
         "Soak 1 cup horse gram overnight and sprout for 2 days",
@@ -71,6 +114,11 @@ let dishesData = {
     },
     {
       "name": "Bendakaya Pulusu",
+      "ingredients": ["okra (bendakaya)", "onions", "ginger-garlic paste", "tamarind extract", "turmeric powder", "red chili powder", "mustard seeds", "cumin seeds", "curry leaves", "oil", "coriander leaves", "salt"],
+      "servings": 4,
+      "cooking_time": "30 minutes",
+      "difficulty": "easy",
+      "category": "vegetarian",
       "how_to_prepare": "Tangy okra curry cooked in tamarind-based gravy with onions and traditional Andhra spices, a popular vegetarian dish",
       "stepwise_instructions": [
         "Cut 250g okra into 1-inch pieces",
@@ -85,6 +133,11 @@ let dishesData = {
     },
     {
       "name": "Gongura Pachadi",
+      "ingredients": ["gongura leaves (sorrel leaves)", "red chilies", "garlic", "green chilies", "mustard seeds", "curry leaves", "oil", "salt"],
+      "servings": 6,
+      "cooking_time": "20 minutes",
+      "difficulty": "easy",
+      "category": "chutney",
       "how_to_prepare": "Tangy chutney made from sorrel leaves (gongura), a signature condiment of Andhra cuisine known for its sour taste and health benefits",
       "stepwise_instructions": [
         "Clean and wash 2 cups fresh gongura leaves",
@@ -99,6 +152,11 @@ let dishesData = {
     },
     {
       "name": "Rayalaseema Kodi Pulusu",
+      "ingredients": ["chicken pieces", "turmeric powder", "sesame oil", "mustard seeds", "cumin seeds", "curry leaves", "onions", "ginger-garlic paste", "tamarind extract", "red chili powder", "coriander powder", "tomatoes", "coriander leaves", "salt"],
+      "servings": 4,
+      "cooking_time": "45 minutes",
+      "difficulty": "medium",
+      "category": "main course",
       "how_to_prepare": "Traditional chicken curry from Rayalaseema region cooked in tangy tamarind gravy with aromatic spices and curry leaves",
       "stepwise_instructions": [
         "Cut 1kg chicken into pieces and marinate with turmeric and salt",
@@ -115,6 +173,11 @@ let dishesData = {
     },
     {
       "name": "Pesarattu",
+      "ingredients": ["whole green gram", "ginger", "green chilies", "onions", "coriander leaves", "cumin seeds", "oil", "salt"],
+      "servings": 4,
+      "cooking_time": "30 minutes",
+      "difficulty": "easy",
+      "category": "breakfast",
       "how_to_prepare": "Green gram dosa, a protein-rich breakfast dish made from whole green gram, popular across Andhra Pradesh as a healthy alternative to regular dosa",
       "stepwise_instructions": [
         "Soak 2 cups whole green gram for 4-6 hours",
@@ -129,6 +192,11 @@ let dishesData = {
     },
     {
       "name": "Rayalaseema Mutton Curry",
+      "ingredients": ["mutton pieces", "yogurt", "red chili powder", "turmeric powder", "sesame oil", "bay leaves", "cinnamon", "cardamom", "onions", "ginger-garlic paste", "tomatoes", "mint leaves", "coriander leaves", "salt"],
+      "servings": 4,
+      "cooking_time": "75 minutes",
+      "difficulty": "medium",
+      "category": "main course",
       "how_to_prepare": "Spicy mutton curry cooked with onions, tomatoes and aromatic spices, known for its robust flavor and tender meat",
       "stepwise_instructions": [
         "Cut 1kg mutton into medium pieces",
@@ -145,6 +213,11 @@ let dishesData = {
     },
     {
       "name": "Andhra Chicken Curry",
+      "ingredients": ["chicken pieces", "turmeric powder", "coconut oil", "curry leaves", "dry red chilies", "onions", "ginger-garlic paste", "tomatoes", "coconut milk", "red chili powder", "coriander powder", "coriander leaves", "salt"],
+      "servings": 4,
+      "cooking_time": "45 minutes",
+      "difficulty": "medium",
+      "category": "main course",
       "how_to_prepare": "Spicy chicken curry with coconut, curry leaves, and red chilies, representing the bold flavors of traditional Andhra cooking",
       "stepwise_instructions": [
         "Cut 1kg chicken into pieces and marinate with turmeric and salt",
@@ -161,6 +234,11 @@ let dishesData = {
     },
     {
       "name": "Gutti Vankaya Koora",
+      "ingredients": ["baby brinjals", "peanuts", "sesame seeds", "coriander seeds", "red chilies", "tamarind", "jaggery", "mustard seeds", "curry leaves", "oil", "salt"],
+      "servings": 4,
+      "cooking_time": "40 minutes",
+      "difficulty": "medium",
+      "category": "vegetarian",
       "how_to_prepare": "Stuffed baby eggplant curry filled with spiced paste, a popular vegetarian dish showcasing the art of Andhra vegetarian cooking",
       "stepwise_instructions": [
         "Make slits in 250g baby brinjals keeping stem intact",
@@ -176,6 +254,11 @@ let dishesData = {
     },
     {
       "name": "Chepa Pulusu",
+      "ingredients": ["fish pieces", "turmeric powder", "onions", "mustard seeds", "curry leaves", "tamarind extract", "red chili powder", "tomatoes", "oil", "coriander leaves", "salt"],
+      "servings": 4,
+      "cooking_time": "35 minutes",
+      "difficulty": "easy",
+      "category": "main course",
       "how_to_prepare": "Fish curry in tangy tamarind gravy, a coastal Andhra delicacy prepared with fresh fish and traditional spices",
       "stepwise_instructions": [
         "Clean and cut 500g fish into pieces",
@@ -191,6 +274,11 @@ let dishesData = {
     },
     {
       "name": "Pappu Charu",
+      "ingredients": ["toor dal", "turmeric powder", "tamarind", "ghee", "mustard seeds", "cumin seeds", "curry leaves", "dry red chilies", "hing (asafoetida)", "onions", "green chilies", "coriander leaves", "salt"],
+      "servings": 4,
+      "cooking_time": "30 minutes",
+      "difficulty": "easy",
+      "category": "dal",
       "how_to_prepare": "Thin lentil soup tempered with spices, a comfort food in Andhra households, light and flavorful accompaniment to rice",
       "stepwise_instructions": [
         "Cook 1/2 cup toor dal with turmeric until soft and mushy",
@@ -206,6 +294,11 @@ let dishesData = {
     },
     {
       "name": "Pootharekulu",
+      "ingredients": ["rice flour", "ghee", "powdered sugar"],
+      "servings": 6,
+      "cooking_time": "45 minutes",
+      "difficulty": "hard",
+      "category": "dessert",
       "how_to_prepare": "Paper-thin sweet crepes layered with ghee and sugar, a traditional Andhra dessert from Atreyapuram, known for its delicate texture",
       "stepwise_instructions": [
         "Make a thin batter with rice flour and water",
@@ -220,22 +313,12 @@ let dishesData = {
       ]
     },
     {
-      "name": "Ariselu",
-      "how_to_prepare": "Traditional rice flour and jaggery sweet prepared during festivals, deep-fried until golden and crispy, a must-have during celebrations",
-      "stepwise_instructions": [
-        "Dry roast 2 cups rice flour until aromatic",
-        "Make jaggery syrup by boiling 1 cup jaggery with little water",
-        "Mix hot jaggery syrup with roasted rice flour gradually",
-        "Add sesame seeds and cardamom powder",
-        "Knead into a smooth dough when warm",
-        "Make small balls and flatten between banana leaves",
-        "Heat oil for deep frying",
-        "Fry ariselu until golden brown on both sides",
-        "Drain on paper towels and store when cool"
-      ]
-    },
-    {
       "name": "Natukodi Pulusu",
+      "ingredients": ["country chicken pieces", "turmeric powder", "sesame oil", "curry leaves", "dry red chilies", "onions", "ginger-garlic paste", "tamarind extract", "red chili powder", "coriander powder", "tomatoes", "coriander leaves", "salt"],
+      "servings": 4,
+      "cooking_time": "55 minutes",
+      "difficulty": "medium",
+      "category": "main course",
       "how_to_prepare": "Country chicken curry, a specialty of Rayalaseema prepared with free-range chicken in spicy tamarind gravy with traditional spices",
       "stepwise_instructions": [
         "Cut 1kg country chicken into pieces",
@@ -253,6 +336,11 @@ let dishesData = {
     },
     {
       "name": "Kandi Pachadi",
+      "ingredients": ["toor dal", "red chilies", "tamarind extract", "mustard seeds", "curry leaves", "hing (asafoetida)", "oil", "salt"],
+      "servings": 6,
+      "cooking_time": "25 minutes",
+      "difficulty": "easy",
+      "category": "chutney",
       "how_to_prepare": "Toor dal chutney, a tangy and spicy accompaniment made with roasted toor dal and red chilies, popular across Rayalaseema",
       "stepwise_instructions": [
         "Dry roast 1/2 cup toor dal until golden and aromatic",
@@ -266,21 +354,12 @@ let dishesData = {
       ]
     },
     {
-      "name": "Bobbatlu (Puran Poli)",
-      "how_to_prepare": "Sweet stuffed flatbread filled with jaggery and lentil mixture, a traditional festive dessert especially popular during Ugadi",
-      "stepwise_instructions": [
-        "Cook 1 cup chana dal until soft and drain excess water",
-        "Mash the dal and add 1 cup jaggery",
-        "Cook the mixture until thick, add cardamom powder",
-        "Make dough with maida, oil, and water",
-        "Roll small portions of dough, place filling in center",
-        "Seal edges and roll gently into flatbread",
-        "Cook on tawa with ghee until golden spots appear",
-        "Serve hot with milk or ghee"
-      ]
-    },
-    {
       "name": "Gongura Mutton",
+      "ingredients": ["gongura leaves (sorrel leaves)", "mutton pieces", "turmeric powder", "oil", "red chilies", "ginger-garlic paste", "red chili powder", "coriander powder", "salt"],
+      "servings": 4,
+      "cooking_time": "70 minutes",
+      "difficulty": "medium",
+      "category": "main course",
       "how_to_prepare": "Mutton cooked with sorrel leaves (gongura), a signature dish of Rayalaseema combining tangy gongura with spicy mutton",
       "stepwise_instructions": [
         "Clean and chop 2 cups fresh gongura leaves",
@@ -297,6 +376,11 @@ let dishesData = {
     },
     {
       "name": "Nalla Karam",
+      "ingredients": ["black sesame seeds", "red chilies", "hing (asafoetida)", "salt"],
+      "servings": 8,
+      "cooking_time": "20 minutes",
+      "difficulty": "easy",
+      "category": "condiment",
       "how_to_prepare": "Black sesame seed powder mixed with spices, a traditional condiment of Rayalaseema region served with rice and ghee",
       "stepwise_instructions": [
         "Dry roast 1 cup black sesame seeds until aromatic",
@@ -311,6 +395,11 @@ let dishesData = {
     },
     {
       "name": "Kadapa Kodi Kura",
+      "ingredients": ["chicken pieces", "coriander seeds", "cumin seeds", "red chilies", "coconut", "turmeric powder", "coconut oil", "curry leaves", "onions", "ginger-garlic paste", "coriander leaves", "salt"],
+      "servings": 4,
+      "cooking_time": "50 minutes",
+      "difficulty": "medium",
+      "category": "main course",
       "how_to_prepare": "Spicy chicken curry from Kadapa district, cooked with coconut and special blend of roasted spices unique to the region",
       "stepwise_instructions": [
         "Cut 1kg chicken into pieces",
@@ -328,6 +417,11 @@ let dishesData = {
     },
     {
       "name": "Chintakaya Pappu",
+      "ingredients": ["toor dal", "turmeric powder", "tamarind", "oil", "mustard seeds", "cumin seeds", "curry leaves", "dry red chilies", "hing (asafoetida)", "onions", "green chilies", "red chili powder", "salt"],
+      "servings": 4,
+      "cooking_time": "35 minutes",
+      "difficulty": "easy",
+      "category": "dal",
       "how_to_prepare": "Tamarind dal, a tangy lentil curry made with tamarind and vegetables, a comfort food staple in Rayalaseema households",
       "stepwise_instructions": [
         "Cook 1 cup toor dal with turmeric until soft",
@@ -344,6 +438,11 @@ let dishesData = {
     },
     {
       "name": "Rayalaseema Bellam Paravannam",
+      "ingredients": ["basmati rice", "milk", "jaggery", "ghee", "cashews", "raisins", "cardamom powder", "salt"],
+      "servings": 6,
+      "cooking_time": "45 minutes",
+      "difficulty": "easy",
+      "category": "dessert",
       "how_to_prepare": "Traditional jaggery rice pudding from Rayalaseema, made with aromatic rice, jaggery, and ghee, often prepared during festivals and special occasions",
       "stepwise_instructions": [
         "Cook 1 cup basmati rice with 4 cups milk until soft and creamy",
@@ -359,6 +458,11 @@ let dishesData = {
     },
     {
       "name": "Ariselu",
+      "ingredients": ["rice", "jaggery", "sesame seeds", "oil"],
+      "servings": 8,
+      "cooking_time": "90 minutes",
+      "difficulty": "hard",
+      "category": "dessert",
       "how_to_prepare": "Traditional Rayalaseema sweet made with rice flour and jaggery, deep-fried until golden and crispy, a must-have during Sankranti festival",
       "stepwise_instructions": [
         "Soak 2 cups rice for 4 hours, drain and spread to dry for 2 hours",
@@ -376,6 +480,11 @@ let dishesData = {
     },
     {
       "name": "Rayalaseema Pongal Sweet",
+      "ingredients": ["broken wheat", "jaggery", "ghee", "cashews", "raisins", "cardamom powder", "salt"],
+      "servings": 6,
+      "cooking_time": "40 minutes",
+      "difficulty": "easy",
+      "category": "dessert",
       "how_to_prepare": "Sweet version of pongal made with broken wheat, jaggery, and ghee, popular in Rayalaseema during harvest festivals",
       "stepwise_instructions": [
         "Dry roast 1 cup broken wheat until aromatic and golden",
@@ -392,6 +501,11 @@ let dishesData = {
     },
     {
       "name": "Kajjikayalu",
+      "ingredients": ["refined flour", "oil", "fresh coconut", "jaggery", "cardamom powder"],
+      "servings": 8,
+      "cooking_time": "60 minutes",
+      "difficulty": "medium",
+      "category": "dessert",
       "how_to_prepare": "Crescent-shaped sweet dumplings filled with coconut and jaggery, deep-fried until crispy, a traditional Rayalaseema festival sweet",
       "stepwise_instructions": [
         "Make dough with 2 cups refined flour, 2 tbsp oil, and water",
@@ -408,6 +522,11 @@ let dishesData = {
     },
     {
       "name": "Nuvvula Laddu",
+      "ingredients": ["sesame seeds", "jaggery", "cardamom powder", "ghee"],
+      "servings": 8,
+      "cooking_time": "30 minutes",
+      "difficulty": "easy",
+      "category": "dessert",
       "how_to_prepare": "Sesame seed laddus made with roasted sesame seeds and jaggery, a nutritious sweet from Rayalaseema region, especially popular in winter",
       "stepwise_instructions": [
         "Dry roast 2 cups sesame seeds until they turn golden and aromatic",
@@ -424,6 +543,11 @@ let dishesData = {
     },
     {
       "name": "Bellam Burelu",
+      "ingredients": ["jaggery", "grated coconut", "cardamom powder", "rice flour", "salt", "oil"],
+      "servings": 6,
+      "cooking_time": "35 minutes",
+      "difficulty": "medium",
+      "category": "dessert",
       "how_to_prepare": "Jaggery-stuffed rice flour pancakes from Rayalaseema, crispy outside and sweet inside, often made during special occasions",
       "stepwise_instructions": [
         "Make filling by melting 150g jaggery with 1 tbsp water",
@@ -440,6 +564,11 @@ let dishesData = {
     },
     {
       "name": "Rayalaseema Semiya Payasam",
+      "ingredients": ["vermicelli", "milk", "jaggery", "coconut milk", "ghee", "cashews", "raisins", "almonds", "cardamom powder"],
+      "servings": 6,
+      "cooking_time": "30 minutes",
+      "difficulty": "easy",
+      "category": "dessert",
       "how_to_prepare": "Vermicelli pudding made with jaggery instead of sugar, coconut milk, and nuts, a traditional dessert from Rayalaseema region",
       "stepwise_instructions": [
         "Roast 1 cup vermicelli in 1 tbsp ghee until golden",
@@ -456,6 +585,11 @@ let dishesData = {
     },
     {
       "name": "Kunda",
+      "ingredients": ["full-fat milk", "sugar", "jaggery", "cardamom powder", "ghee", "almonds", "pistachios"],
+      "servings": 4,
+      "cooking_time": "60 minutes",
+      "difficulty": "medium",
+      "category": "dessert",
       "how_to_prepare": "Slow-cooked milk sweet from Rayalaseema, similar to rabri but thicker, flavored with cardamom and garnished with nuts",
       "stepwise_instructions": [
         "Boil 1 liter full-fat milk in a heavy-bottomed pan",
@@ -807,16 +941,58 @@ function processMessage(message) {
         return 'Namaste! 🙏 Welcome to Rayalaseema Chef! I can help you with authentic Andhra Rayalaseema recipes. What dish would you like to learn about today?';
     }
     
-    // Help responses - more specific matching
+    // Help responses - enhanced with new features
     if (lowerMessage.includes('help') || lowerMessage.includes('what can you do') || lowerMessage.includes('what do you know')) {
-        return 'I can help you with traditional Rayalaseema recipes! You can ask me:\n\n• "How to make [dish name]?"\n• "Tell me about [dish name]"\n• "Recipe for [dish name]"\n• "What is [dish name]?"\n\nI know about dishes like Ragi Sangati, Paya Curry, Gongura Mutton, Rayalaseema Chicken Fry, Ariselu, Bellam Paravannam, and many more including traditional sweets!';
+        return 'I can help you with traditional Rayalaseema recipes! You can ask me:\n\n🍛 **Recipe Search:**\n• "How to make [dish name]?"\n• "Tell me about [dish name]"\n• "Recipe for [dish name]"\n\n🥗 **Ingredient Search:**\n• "Dishes with chicken"\n• "Recipes with coconut"\n• "What can I make with rice?"\n\n⭐ **Favorites:**\n• "Show my favorites"\n• "Add to favorites"\n• "Remove from favorites"\n\n📏 **Recipe Scaling:**\n• "Scale recipe for 6 people"\n• "Double the recipe"\n• "Half the ingredients"\n\n🔍 **Quick Filters:**\n• "Easy recipes"\n• "Desserts"\n• "Quick dishes under 30 minutes"\n\nI know about dishes like Ragi Sangati, Paya Curry, Gongura Mutton, Rayalaseema Chicken Fry, Ariselu, Bellam Paravannam, and many more!';
     }
+
+    // Phase 1 Feature Handlers
+    
+    // Favorites management
+    if (lowerMessage.includes('favorite') || lowerMessage.includes('favourite')) {
+        if (lowerMessage.includes('show') || lowerMessage.includes('list') || lowerMessage.includes('my')) {
+            return formatFavoritesList();
+        }
+        if (lowerMessage.includes('add') || lowerMessage.includes('save')) {
+            return 'To add a recipe to favorites, click the ❤️ button on any recipe I share with you!';
+        }
+    }
+    
+    // Ingredient-based search
+    if (lowerMessage.includes('ingredient') || lowerMessage.includes('with ') || lowerMessage.includes('using ')) {
+        const ingredientMatches = lowerMessage.match(/(?:ingredient|with|using)\s+(.+?)(?:\?|$|and|or)/);
+        if (ingredientMatches) {
+            return formatIngredientSearchResults(ingredientMatches[1]);
+        }
+    }
+    
+    // Recipe scaling
+    const scaleMatch = lowerMessage.match(/(?:scale|for|serves?)\s+(\d+)\s*(?:people|person|serving)/);
+    if (scaleMatch || lowerMessage.includes('double') || lowerMessage.includes('half')) {
+        return 'To scale a recipe, first ask for the recipe, then I\'ll provide scaling options. Try "How to make Ragi Sangati for 6 people?"';
+    }
+    
+    // Enhanced search with filters
+    const searchResults = enhancedSearch(lowerMessage);
+    if (searchResults.ingredient.length > 0 || searchResults.category.length > 0 || 
+        searchResults.difficulty.length > 0 || searchResults.time.length > 0) {
+        return formatEnhancedSearchResults(searchResults, lowerMessage);
+    }
+    
+    // Check for servings in the original query
+    const servingsMatch = lowerMessage.match(/(?:for|serves?)\s+(\d+)\s*(?:people|person|serving)/);
     
     // Search for matching dish
     const matchedDish = findMatchingDish(lowerMessage);
     
     if (matchedDish) {
-        return formatRecipeResponse(matchedDish);
+        if (servingsMatch) {
+            const newServings = parseInt(servingsMatch[1]);
+            const scaledDish = scaleRecipe(matchedDish, newServings);
+            return formatRecipeResponse(scaledDish, true);
+        } else {
+            return formatRecipeResponse(matchedDish);
+        }
     }
     
     // List all dishes if asked
@@ -825,7 +1001,7 @@ function processMessage(message) {
     }
     
     // Default response for unmatched queries
-    return `I couldn't find information about that dish. Here are some popular Rayalaseema dishes I know about:\n\n${getPopularDishes()}\n\nTry asking "How to make Ariselu?" or "Tell me about Bellam Paravannam" for sweets!`;
+    return `I couldn't find information about that dish. Here are some popular Rayalaseema dishes I know about:\n\n${getPopularDishes()}\n\nTry asking "How to make Ariselu?" or "Tell me about Bellam Paravannam" for sweets!\n\n💡 **New Features:**\n• Search by ingredients: "Dishes with chicken"\n• Filter by difficulty: "Easy recipes"\n• Scale recipes: "Ragi Sangati for 6 people"`;
 }
 
 // Find matching dish in the data with improved algorithm
@@ -907,29 +1083,142 @@ function findMatchingDish(message) {
 }
 
 // Format recipe response
-function formatRecipeResponse(dish) {
-    let response = `🍛 **${dish.name}**\n\n`;
+function formatRecipeResponse(dish, isScaled = false) {
+    let response = `🍛 **${dish.name}**`;
+    
+    // Add scaling info if applicable
+    if (isScaled && dish.scaledFrom) {
+        response += ` (Scaled from ${dish.scaledFrom} to ${dish.servings} servings)`;
+    }
+    
+    response += '\n\n';
+    
+    // Add recipe metadata
+    if (dish.difficulty || dish.cooking_time || dish.category) {
+        response += '📊 **Recipe Info:**\n';
+        if (dish.difficulty) response += `• Difficulty: ${dish.difficulty}\n`;
+        if (dish.cooking_time) response += `• Cooking Time: ${dish.cooking_time}\n`;
+        if (dish.category) response += `• Category: ${dish.category}\n`;
+        if (dish.servings) response += `• Servings: ${dish.servings}\n`;
+        response += '\n';
+    }
+    
     response += `${dish.how_to_prepare}\n\n`;
-    response += `**Step-by-step Instructions:**\n`;
+    
+    // Add ingredients if available
+    if (dish.ingredients && dish.ingredients.length > 0) {
+        response += '🛒 **Ingredients:**\n';
+        dish.ingredients.forEach(ingredient => {
+            response += `• ${ingredient}\n`;
+        });
+        response += '\n';
+    }
+    
+    response += '**Step-by-step Instructions:**\n';
     
     dish.stepwise_instructions.forEach((step, index) => {
         response += `${index + 1}. ${step}\n`;
     });
     
-    response += `\n✨ Enjoy your delicious ${dish.name}! Let me know if you need help with any other Rayalaseema dishes.`;
+    response += `\n✨ Enjoy your delicious ${dish.name}!`;
+    
+    // Add interactive options
+    response += '\n\n💡 **Quick Actions:**\n';
+    response += `• Ask "Scale ${dish.name} for X people" to adjust servings\n`;
+    response += `• Click the ❤️ below to add to favorites\n`;
+    response += `• Ask about similar dishes or ingredients used`;
     
     return response;
 }
 
-// Format dish list
-function formatDishList() {
-    let response = '🍽️ **Here are all the Rayalaseema dishes I know:**\n\n';
+// Formatting functions for Phase 1 features
+
+function formatFavoritesList() {
+    const favorites = getFavoriteRecipes();
     
-    dishesData.dishes.forEach((dish, index) => {
+    if (favorites.length === 0) {
+        return '💔 You haven\'t added any recipes to your favorites yet!\n\nTo add favorites, click the ❤️ button on any recipe I share with you.';
+    }
+    
+    let response = `⭐ **Your Favorite Recipes (${favorites.length}):**\n\n`;
+    
+    favorites.forEach((dish, index) => {
         response += `${index + 1}. **${dish.name}**\n`;
+        if (dish.difficulty) response += `   Difficulty: ${dish.difficulty}\n`;
+        if (dish.cooking_time) response += `   Time: ${dish.cooking_time}\n`;
+        response += '\n';
     });
     
-    response += '\nJust ask me about any of these dishes and I\'ll share the complete recipe with you!';
+    response += 'Ask me about any of these dishes for the complete recipe!';
+    return response;
+}
+
+function formatIngredientSearchResults(ingredient) {
+    const matches = searchByIngredients(ingredient);
+    
+    if (matches.length === 0) {
+        return `🔍 I couldn't find any recipes using "${ingredient}". Try searching for common ingredients like chicken, rice, coconut, or lentils.`;
+    }
+    
+    let response = `🥗 **Recipes using "${ingredient}" (${matches.length} found):**\n\n`;
+    
+    matches.slice(0, 6).forEach((match, index) => {
+        const dish = match.dish;
+        response += `${index + 1}. **${dish.name}** (${Math.round(match.matchScore * 100)}% match)\n`;
+        if (dish.difficulty) response += `   Difficulty: ${dish.difficulty}`;
+        if (dish.cooking_time) response += ` | Time: ${dish.cooking_time}`;
+        response += '\n\n';
+    });
+    
+    response += `Ask me "How to make [dish name]?" for the complete recipe!`;
+    return response;
+}
+
+function formatEnhancedSearchResults(results, originalQuery) {
+    let response = `🔍 **Search Results for "${originalQuery}":**\n\n`;
+    let hasResults = false;
+    
+    if (results.ingredient.length > 0) {
+        response += `📝 **By Ingredients (${results.ingredient.length}):**\n`;
+        results.ingredient.slice(0, 3).forEach(match => {
+            response += `• ${match.dish.name}\n`;
+        });
+        response += '\n';
+        hasResults = true;
+    }
+    
+    if (results.category.length > 0) {
+        response += `🏷️ **By Category (${results.category.length}):**\n`;
+        results.category.slice(0, 3).forEach(dish => {
+            response += `• ${dish.name}\n`;
+        });
+        response += '\n';
+        hasResults = true;
+    }
+    
+    if (results.difficulty.length > 0) {
+        response += `⭐ **By Difficulty (${results.difficulty.length}):**\n`;
+        results.difficulty.slice(0, 3).forEach(dish => {
+            response += `• ${dish.name}\n`;
+        });
+        response += '\n';
+        hasResults = true;
+    }
+    
+    if (results.time.length > 0) {
+        response += `⏱️ **By Cooking Time (${results.time.length}):**\n`;
+        results.time.slice(0, 3).forEach(dish => {
+            response += `• ${dish.name} (${dish.cooking_time})\n`;
+        });
+        response += '\n';
+        hasResults = true;
+    }
+    
+    if (!hasResults) {
+        return `🔍 No specific results found for "${originalQuery}". Try asking about specific dishes or ingredients!`;
+    }
+    
+    response += `Ask me about any dish for the complete recipe!`;
     return response;
 }
 
@@ -956,7 +1245,7 @@ function addUserMessage(message) {
     scrollToBottom();
 }
 
-// Add bot message to chat
+// Add bot message to chat with enhanced features
 function addBotMessage(message) {
     const chatMessages = document.getElementById('chatMessages');
     const messageDiv = document.createElement('div');
@@ -968,6 +1257,34 @@ function addBotMessage(message) {
     // Format message with proper styling
     const formattedMessage = formatBotMessage(message);
     
+    // Check if this message contains a recipe (for favorite button)
+    const isRecipe = message.includes('Step-by-step Instructions:') || message.includes('🍛 **');
+    let dishName = null;
+    
+    if (isRecipe) {
+        const dishMatch = message.match(/🍛 \*\*(.+?)\*\*/);
+        if (dishMatch) {
+            dishName = dishMatch[1].replace(/ \(Scaled.*\)/, ''); // Remove scaling info from dish name
+        }
+    }
+    
+    let actionButtons = `
+        <button class="play-pause-btn" onclick="togglePlayPause('${messageId}', this)" data-message="${encodeURIComponent(message)}">
+            <i class="fas fa-play"></i>
+            <span>Play</span>
+        </button>
+    `;
+    
+    // Add favorite button for recipes
+    if (dishName) {
+        const isFav = isFavorite(dishName);
+        actionButtons += `
+            <button class="favorite-btn ${isFav ? 'active' : ''}" onclick="handleFavoriteToggle('${dishName}', this)" data-dish="${dishName}" title="${isFav ? 'Remove from favorites' : 'Add to favorites'}">
+                ${isFav ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>'}
+            </button>
+        `;
+    }
+    
     messageDiv.innerHTML = `
         <div class="message-avatar">
             <i class="fas fa-chef-hat"></i>
@@ -975,10 +1292,7 @@ function addBotMessage(message) {
         <div class="message-content">
             ${formattedMessage}
             <div class="message-actions">
-                <button class="play-pause-btn" onclick="togglePlayPause('${messageId}', this)" data-message="${encodeURIComponent(message)}">
-                    <i class="fas fa-play"></i>
-                    <span>Play</span>
-                </button>
+                ${actionButtons}
             </div>
         </div>
     `;
@@ -987,9 +1301,37 @@ function addBotMessage(message) {
     chatMessages.appendChild(messageDiv);
     
     // Add timer suggestions if recipe instructions contain timing information
-    addTimerSuggestions(message, messageDiv);
+    addTimerSuggestions(message);
     
     scrollToBottom();
+}
+
+// Handle favorite button toggle
+function handleFavoriteToggle(dishName, buttonElement) {
+    const wasAdded = toggleFavorite(dishName);
+    
+    // Update button appearance  
+    buttonElement.innerHTML = wasAdded ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>';
+    buttonElement.classList.toggle('active', wasAdded);
+    buttonElement.title = wasAdded ? 'Remove from favorites' : 'Add to favorites';
+    
+    // Show feedback message (but avoid infinite loop)
+    setTimeout(() => {
+        const feedback = wasAdded ? `❤️ Added "${dishName}" to your favorites!` : `💔 Removed "${dishName}" from your favorites.`;
+        const chatMessages = document.getElementById('chatMessages');
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'message bot-message';
+        messageDiv.innerHTML = `
+            <div class="message-avatar">
+                <i class="fas fa-chef-hat"></i>
+            </div>
+            <div class="message-content">
+                <p>${feedback}</p>
+            </div>
+        `;
+        chatMessages.appendChild(messageDiv);
+        scrollToBottom();
+    }, 100);
 }
 
 // Format bot message with proper HTML
@@ -1016,7 +1358,7 @@ function formatBotMessage(message) {
         }
     }
     
-    return `<p>${formatted}</p>`;
+    return `<div>${formatted}</div>`;
 }
 
 // Scroll to bottom of chat
@@ -1170,6 +1512,24 @@ function startSpeechWithText(textToSpeak, buttonElement) {
     }, delay);
 }
 
+// Helper function to calculate current segment index based on elapsed time
+function getCurrentSegmentIndex(segments, elapsedTime) {
+    // Estimate speaking rate (characters per millisecond)
+    const speakingRate = isMobileDevice() ? 2.5 : 3.0; // chars per second, adjusted for device
+    const elapsedSeconds = elapsedTime / 1000;
+    const estimatedCharsSpoken = elapsedSeconds * speakingRate;
+    
+    let charCount = 0;
+    for (let i = 0; i < segments.length; i++) {
+        charCount += segments[i].length;
+        if (charCount >= estimatedCharsSpoken) {
+            return Math.max(0, i); // Return current or previous segment
+        }
+    }
+    
+    return Math.max(0, segments.length - 1);
+}
+
 // Now update the startPlayback function to initialize text segments
 function startPlayback(messageText, buttonElement) {
     const icon = buttonElement.querySelector('i');
@@ -1223,289 +1583,339 @@ function segmentTextForResume(text) {
     
     for (let i = 0; i < words.length; i += segmentSize) {
         const segment = words.slice(i, i + segmentSize).join(' ');
-        if (segment.trim().length > 0) {
+        if (segment.trim()) {
             segments.push(segment.trim());
         }
-    }
-    
-    // If text is very short, just use it as one segment
-    if (segments.length === 0) {
-        segments.push(text);
     }
     
     return segments;
 }
 
-// Calculate which segment we should be at based on elapsed time
-function getCurrentSegmentIndex(segments, elapsedTimeMs) {
-    if (!segments || segments.length === 0) return 0;
-    
-    // More conservative approach for cross-browser compatibility
-    const speakingRate = isMobileDevice() ? 150 : 180; // words per minute
-    const elapsedMinutes = elapsedTimeMs / (1000 * 60);
-    
-    // Calculate words spoken
-    const wordsSpoken = elapsedMinutes * speakingRate;
-    
-    let totalWords = 0;
-    for (let i = 0; i < segments.length; i++) {
-        const segmentWords = segments[i].split(/\s+/).length;
-        
-        // Check if we're still within this segment
-        if (totalWords + segmentWords >= wordsSpoken) {
-            return Math.max(0, i);
-        }
-        
-        totalWords += segmentWords;
-        // Add buffer for pauses between segments (~2 seconds = 6 words at 180 wpm)
-        totalWords += 6;
-    }
-    
-    // If we've gone through all segments, return the last one
-    return Math.max(0, segments.length - 1);
-}
-
-// ========================
-// COOKING TIMER FUNCTIONALITY
-// ========================
-
+// Timer functionality (existing code preserved)
 let timerInterval = null;
 let timerSeconds = 0;
-let isTimerRunning = false;
-let isTimerPaused = false;
+let timerRunning = false;
 
-// Toggle timer widget visibility
-function toggleTimer() {
-    const timer = document.getElementById('cookingTimer');
-    timer.classList.toggle('expanded');
-}
-
-// Set quick timer (in seconds)
 function setQuickTimer(seconds) {
     timerSeconds = seconds;
     updateTimerDisplay();
-    
-    // Expand timer if collapsed
-    const timer = document.getElementById('cookingTimer');
-    if (!timer.classList.contains('expanded')) {
-        timer.classList.add('expanded');
-    }
+    expandTimer();
 }
 
-// Set custom timer from input fields
 function setCustomTimer() {
     const minutes = parseInt(document.getElementById('customMinutes').value) || 0;
     const seconds = parseInt(document.getElementById('customSeconds').value) || 0;
     
-    if (minutes === 0 && seconds === 0) {
-        alert('Please enter a valid time!');
-        return;
-    }
-    
     timerSeconds = (minutes * 60) + seconds;
-    updateTimerDisplay();
     
-    // Clear input fields
-    document.getElementById('customMinutes').value = '';
-    document.getElementById('customSeconds').value = '';
+    if (timerSeconds > 0) {
+        updateTimerDisplay();
+        expandTimer();
+        
+        // Clear inputs
+        document.getElementById('customMinutes').value = '';
+        document.getElementById('customSeconds').value = '';
+    }
 }
 
-// Start timer
 function startTimer() {
-    if (timerSeconds <= 0) {
-        alert('Please set a timer first!');
-        return;
-    }
+    if (timerSeconds <= 0) return;
     
-    isTimerRunning = true;
-    isTimerPaused = false;
-    
-    // Update button visibility
+    timerRunning = true;
     document.querySelector('.start-btn').style.display = 'none';
-    document.querySelector('.pause-btn').style.display = 'flex';
+    document.querySelector('.pause-btn').style.display = 'inline-block';
     
-    // Add active class for styling
-    document.querySelector('.timer-display').classList.add('active');
-    
-    // Start countdown
     timerInterval = setInterval(() => {
         timerSeconds--;
         updateTimerDisplay();
         
-        // Warning when 1 minute left
-        if (timerSeconds === 60) {
-            document.querySelector('.timer-display').classList.add('warning');
-            showTimerNotification('⏰ 1 Minute Left!', 'Almost done!');
-        }
-        
-        // Timer finished
         if (timerSeconds <= 0) {
-            timerFinished();
+            clearInterval(timerInterval);
+            timerCompleted();
         }
     }, 1000);
 }
 
-// Pause timer
 function pauseTimer() {
-    if (timerInterval) {
-        clearInterval(timerInterval);
-        timerInterval = null;
-    }
-    
-    isTimerRunning = false;
-    isTimerPaused = true;
-    
-    // Update button visibility
-    document.querySelector('.start-btn').style.display = 'flex';
-    document.querySelector('.start-btn').innerHTML = '<i class="fas fa-play"></i> Resume';
+    timerRunning = false;
+    clearInterval(timerInterval);
     document.querySelector('.pause-btn').style.display = 'none';
-    
-    // Remove active class
-    document.querySelector('.timer-display').classList.remove('active');
+    document.querySelector('.start-btn').style.display = 'inline-block';
 }
 
-// Reset timer
 function resetTimer() {
-    if (timerInterval) {
-        clearInterval(timerInterval);
-        timerInterval = null;
-    }
-    
+    timerRunning = false;
+    clearInterval(timerInterval);
     timerSeconds = 0;
-    isTimerRunning = false;
-    isTimerPaused = false;
-    
-    // Reset button visibility
-    document.querySelector('.start-btn').style.display = 'flex';
-    document.querySelector('.start-btn').innerHTML = '<i class="fas fa-play"></i> Start';
-    document.querySelector('.pause-btn').style.display = 'none';
-    
-    // Remove styling classes
-    document.querySelector('.timer-display').classList.remove('active', 'warning');
-    
     updateTimerDisplay();
+    document.querySelector('.pause-btn').style.display = 'none';
+    document.querySelector('.start-btn').style.display = 'inline-block';
 }
 
-// Update timer display
 function updateTimerDisplay() {
     const minutes = Math.floor(timerSeconds / 60);
     const seconds = timerSeconds % 60;
-    const displayText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    document.getElementById('timerDisplay').textContent = displayText;
+    document.getElementById('timerDisplay').textContent = 
+        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
-// Timer finished
-function timerFinished() {
-    resetTimer();
+function timerCompleted() {
+    alert('⏰ Timer completed! Your cooking step is ready!');
     
-    // Show notification
-    showTimerNotification('🍳 Timer Finished!', 'Your cooking time is up!');
-    
-    // Play notification sound (using speech)
-    if (synthesis && selectedVoice) {
-        const announcement = new SpeechSynthesisUtterance('Timer finished! Your cooking time is up!');
-        announcement.voice = selectedVoice;
-        announcement.rate = 1.0;
-        announcement.pitch = 1.2;
-        announcement.volume = 1.0;
-        synthesis.speak(announcement);
-    }
-    
-    // Browser notification if permission granted
-    if ('Notification' in window && Notification.permission === 'granted') {
-        new Notification('🍳 Rayalaseema Chef Timer', {
-            body: 'Your cooking time is up!',
-            icon: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Ctext x="50" y="60" font-size="40" text-anchor="middle"%3E🍛%3C/text%3E%3C/svg%3E'
-        });
-    }
-}
-
-// Show timer notification popup
-function showTimerNotification(title, message) {
-    // Remove existing notification
-    const existingNotification = document.querySelector('.timer-notification');
-    if (existingNotification) {
-        existingNotification.remove();
-    }
-    
-    // Create notification
-    const notification = document.createElement('div');
-    notification.className = 'timer-notification';
-    notification.innerHTML = `
-        <h3>${title}</h3>
-        <p>${message}</p>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    // Auto remove after 3 seconds
-    setTimeout(() => {
-        if (notification.parentNode) {
-            notification.remove();
+    // Play notification sound if speech synthesis is available
+    if (window.speechSynthesis) {
+        const utterance = new SpeechSynthesisUtterance('Timer completed! Your cooking step is ready!');
+        utterance.rate = 1;
+        utterance.pitch = 1;
+        if (selectedVoice) {
+            utterance.voice = selectedVoice;
         }
-    }, 3000);
+        speechSynthesis.speak(utterance);
+    }
+    
+    resetTimer();
 }
 
-// Auto-detect timer mentions in recipes and suggest quick timers
+function toggleTimer() {
+    const timer = document.getElementById('cookingTimer');
+    const isExpanded = timer.classList.contains('expanded');
+    
+    if (isExpanded) {
+        timer.classList.remove('expanded');
+    } else {
+        expandTimer();
+    }
+}
+
+function expandTimer() {
+    const timer = document.getElementById('cookingTimer');
+    timer.classList.add('expanded');
+}
+
+function addTimerSuggestions(messageText) {
+    const suggestions = detectTimerInText(messageText);
+    
+    if (suggestions.length > 0) {
+        const chatMessages = document.getElementById('chatMessages');
+        const suggestionDiv = document.createElement('div');
+        suggestionDiv.className = 'timer-suggestions';
+        
+        let suggestionHTML = '<div class="timer-suggestion-header">⏰ <strong>Quick Timer Suggestions:</strong></div>';
+        suggestionHTML += '<div class="timer-suggestion-buttons">';
+        
+        suggestions.slice(0, 3).forEach((suggestion, index) => {
+            suggestionHTML += `<button class="timer-suggestion-btn" onclick="setQuickTimer(${suggestion.seconds}); addBotMessage('Timer set for ${suggestion.text}! Click Start when ready.');">${suggestion.text}</button>`;
+        });
+        
+        suggestionHTML += '</div>';
+        suggestionDiv.innerHTML = suggestionHTML;
+        
+        chatMessages.appendChild(suggestionDiv);
+        scrollToBottom();
+    }
+}
+
 function detectTimerInText(text) {
-    const timerPatterns = [
-        /(\d+)\s*(?:minutes?|mins?)/gi,
-        /(\d+)\s*(?:seconds?|secs?)/gi,
-        /(\d+)\s*(?:hours?|hrs?)/gi
+    const timePatterns = [
+        { pattern: /(\d+)\s*(?:hours?|hrs?)/gi, multiplier: 3600 },
+        { pattern: /(\d+)\s*(?:minutes?|mins?)/gi, multiplier: 60 },
+        { pattern: /(\d+)\s*(?:seconds?|secs?)/gi, multiplier: 1 }
     ];
     
     const suggestions = [];
+    const foundTimes = new Set();
     
-    timerPatterns.forEach((pattern, index) => {
-        const matches = text.match(pattern);
-        if (matches) {
-            matches.forEach(match => {
-                const time = parseInt(match);
-                if (time > 0 && time <= 180) { // Max 3 hours
-                    let seconds;
-                    if (index === 0) seconds = time * 60; // minutes
-                    else if (index === 1) seconds = time; // seconds  
-                    else if (index === 2) seconds = time * 3600; // hours
-                    
-                    if (seconds <= 10800) { // Max 3 hours in seconds
-                        suggestions.push({ text: match, seconds: seconds });
-                    }
+    timePatterns.forEach(({ pattern, multiplier }) => {
+        let match;
+        while ((match = pattern.exec(text)) !== null) {
+            const time = parseInt(match[1]);
+            const seconds = time * multiplier;
+            
+            if (seconds >= 30 && seconds <= 10800) { // 30 seconds to 3 hours
+                const timeText = match[0].toLowerCase();
+                if (!foundTimes.has(seconds)) {
+                    foundTimes.add(seconds);
+                    suggestions.push({ text: timeText, seconds: seconds });
                 }
-            });
+            }
         }
     });
     
     return suggestions;
 }
 
-// Add timer suggestions to recipe messages
-function addTimerSuggestions(messageText, messageElement) {
-    const suggestions = detectTimerInText(messageText);
+// Phase 1 Features: Enhanced functionality for better user experience
+
+// Favorites Management
+let favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
+
+// Ingredient-based search functionality
+function searchByIngredients(ingredients) {
+    const searchTerms = ingredients.toLowerCase().split(/[\s,]+/).filter(term => term.length > 2);
+    const matchingDishes = [];
     
-    if (suggestions.length > 0) {
-        const suggestionsDiv = document.createElement('div');
-        suggestionsDiv.className = 'timer-suggestions';
-        suggestionsDiv.innerHTML = `
-            <div class="suggestions-header">
-                <i class="fas fa-clock"></i>
-                <span>Quick Timer:</span>
-            </div>
-            <div class="suggestions-buttons">
-                ${suggestions.map(s => 
-                    `<button class="timer-suggestion-btn" onclick="setQuickTimer(${s.seconds})">${s.text}</button>`
-                ).join('')}
-            </div>
-        `;
-        
-        messageElement.appendChild(suggestionsDiv);
-    }
+    dishesData.dishes.forEach(dish => {
+        if (dish.ingredients) {
+            const dishIngredients = dish.ingredients.join(' ').toLowerCase();
+            let matchCount = 0;
+            
+            searchTerms.forEach(term => {
+                if (dishIngredients.includes(term)) {
+                    matchCount++;
+                }
+            });
+            
+            if (matchCount > 0) {
+                matchingDishes.push({
+                    dish: dish,
+                    matchScore: matchCount / searchTerms.length,
+                    matchCount: matchCount
+                });
+            }
+        }
+    });
+    
+    // Sort by match score (highest first)
+    return matchingDishes.sort((a, b) => b.matchScore - a.matchScore || b.matchCount - a.matchCount);
 }
 
-// Request notification permission on page load
-document.addEventListener('DOMContentLoaded', function() {
-    if ('Notification' in window && Notification.permission === 'default') {
-        Notification.requestPermission();
+// Recipe scaling calculator
+function scaleRecipe(dish, newServings) {
+    if (!dish.servings || !newServings || newServings <= 0) {
+        return dish;
     }
-});
+    
+    const scaleFactor = newServings / dish.servings;
+    const scaledDish = { ...dish };
+    
+    // Scale ingredients if they exist
+    if (dish.ingredients) {
+        scaledDish.ingredients = dish.ingredients.map(ingredient => {
+            // Extract numbers and scale them
+            return ingredient.replace(/(\d+(?:\.\d+)?)\s*(cups?|tbsp|tsp|kg|g|ml|l)/gi, (match, amount, unit) => {
+                const scaledAmount = (parseFloat(amount) * scaleFactor).toFixed(1);
+                return `${scaledAmount} ${unit}`;
+            });
+        });
+    }
+    
+    // Scale step-by-step instructions
+    scaledDish.stepwise_instructions = dish.stepwise_instructions.map(step => {
+        return step.replace(/(\d+(?:\.\d+)?)\s*(cups?|tbsp|tsp|kg|g|ml|l)/gi, (match, amount, unit) => {
+            const scaledAmount = (parseFloat(amount) * scaleFactor).toFixed(1);
+            return `${scaledAmount} ${unit}`;
+        });
+    });
+    
+    scaledDish.servings = newServings;
+    scaledDish.scaledFrom = dish.servings;
+    
+    return scaledDish;
+}
 
-// End of script
+// Favorites functionality
+function toggleFavorite(dishName) {
+    const index = favoriteRecipes.indexOf(dishName);
+    
+    if (index === -1) {
+        favoriteRecipes.push(dishName);
+    } else {
+        favoriteRecipes.splice(index, 1);
+    }
+    
+    localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
+    updateFavoriteButtons();
+    return index === -1; // Return true if added, false if removed
+}
+
+function isFavorite(dishName) {
+    return favoriteRecipes.includes(dishName);
+}
+
+function getFavoriteRecipes() {
+    return dishesData.dishes.filter(dish => favoriteRecipes.includes(dish.name));
+}
+
+function updateFavoriteButtons() {
+    // Update all favorite buttons in the DOM
+    document.querySelectorAll('.favorite-btn').forEach(btn => {
+        const dishName = btn.getAttribute('data-dish');
+        const isFav = isFavorite(dishName);
+        btn.innerHTML = isFav ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>';
+        btn.classList.toggle('active', isFav);
+    });
+}
+
+// Enhanced search and filtering
+function filterRecipesByCategory(category) {
+    return dishesData.dishes.filter(dish => 
+        dish.category && dish.category.toLowerCase().includes(category.toLowerCase())
+    );
+}
+
+function filterRecipesByDifficulty(difficulty) {
+    return dishesData.dishes.filter(dish => 
+        dish.difficulty && dish.difficulty.toLowerCase() === difficulty.toLowerCase()
+    );
+}
+
+function filterRecipesByCookingTime(maxMinutes) {
+    return dishesData.dishes.filter(dish => {
+        if (!dish.cooking_time) return false;
+        
+        // Extract minutes from cooking time string
+        const timeMatch = dish.cooking_time.match(/(\d+)\s*(?:min|minute)/i);
+        if (!timeMatch) return false;
+        
+        return parseInt(timeMatch[1]) <= maxMinutes;
+    });
+}
+
+// Enhanced search function that combines multiple criteria
+function enhancedSearch(query) {
+    const results = {
+        exact: [],
+        ingredient: [],
+        category: [],
+        difficulty: [],
+        time: []
+    };
+    
+    const lowerQuery = query.toLowerCase();
+    
+    // Check for ingredient-based search
+    if (lowerQuery.includes('ingredient') || lowerQuery.includes('with')) {
+        const ingredientMatch = lowerQuery.match(/(?:ingredient|with)\s+(.+)/);
+        if (ingredientMatch) {
+            results.ingredient = searchByIngredients(ingredientMatch[1]);
+        }
+    }
+    
+    // Check for category search
+    if (lowerQuery.includes('main course') || lowerQuery.includes('dessert') || lowerQuery.includes('sweet') || lowerQuery.includes('snack')) {
+        const categories = ['main course', 'dessert', 'sweet', 'snack'];
+        categories.forEach(cat => {
+            if (lowerQuery.includes(cat)) {
+                results.category = filterRecipesByCategory(cat);
+            }
+        });
+    }
+    
+    // Check for difficulty search
+    if (lowerQuery.includes('easy') || lowerQuery.includes('medium') || lowerQuery.includes('hard')) {
+        const difficulties = ['easy', 'medium', 'hard'];
+        difficulties.forEach(diff => {
+            if (lowerQuery.includes(diff)) {
+                results.difficulty = filterRecipesByDifficulty(diff);
+            }
+        });
+    }
+    
+    // Check for time-based search
+    const timeMatch = lowerQuery.match(/(?:under|less than|within)\s+(\d+)\s*(?:min|minute)/);
+    if (timeMatch) {
+        results.time = filterRecipesByCookingTime(parseInt(timeMatch[1]));
+    }
+    
+    return results;
+}

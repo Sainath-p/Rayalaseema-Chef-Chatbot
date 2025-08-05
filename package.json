@@ -1,7 +1,7 @@
 {
   "name": "rayalaseema-chef-chatbot",
-  "version": "1.0.0",
-  "description": "Interactive chatbot for authentic Andhra Rayalaseema dishes with voice support",
+  "version": "2.0.0",
+  "description": "Interactive chatbot for authentic Andhra Rayalaseema dishes with voice support, recipe scaling, and favorites management",
   "main": "RayalaseemaDishesChatbot.html",
   "scripts": {
     "start": "echo 'Open RayalaseemaDishesChatbot.html in your browser'",

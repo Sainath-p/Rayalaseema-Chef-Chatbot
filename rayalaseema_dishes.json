@@ -2,6 +2,11 @@
   "dishes": [
     {
       "name": "Ragi Sangati",
+      "ingredients": ["ragi flour", "water", "salt"],
+      "servings": 4,
+      "cooking_time": "25 minutes",
+      "difficulty": "easy",
+      "category": "main course",
       "how_to_prepare": "Traditional finger millet balls served with spicy curries, a staple food of Rayalaseema region made by cooking ragi flour with water and salt",
       "stepwise_instructions": [
         "Boil 3 cups of water with salt in a heavy-bottomed pan",
@@ -14,6 +19,11 @@
     },
     {
       "name": "Paya Curry",
+      "ingredients": ["mutton paya", "onions", "tomatoes", "ginger-garlic paste", "spices", "oil"],
+      "servings": 4,
+      "cooking_time": "90 minutes", 
+      "difficulty": "medium",
+      "category": "main course",
       "how_to_prepare": "Spicy mutton trotters curry slow-cooked with aromatic spices, a signature dish of Rayalaseema known for its rich flavor and gelatinous texture",
       "stepwise_instructions": [
         "Clean and pressure cook 1kg mutton paya for 4-5 whistles",
@@ -27,6 +37,11 @@
     },
     {
       "name": "Kurnool Kodi Pulao",
+      "ingredients": ["chicken", "basmati rice", "yogurt", "whole spices", "ghee", "onions"],
+      "servings": 6,
+      "cooking_time": "60 minutes",
+      "difficulty": "medium", 
+      "category": "main course",
       "how_to_prepare": "Aromatic chicken pulao from Kurnool district, cooked with basmati rice and traditional Rayalaseema spices in dum style",
       "stepwise_instructions": [
         "Marinate 500g chicken pieces with yogurt, chili powder, and turmeric for 30 minutes",
@@ -42,6 +57,11 @@
     },
     {
       "name": "Rayalaseema Chicken Fry",
+      "ingredients": ["chicken", "red chili powder", "turmeric", "ginger-garlic paste", "curry leaves", "oil"],
+      "servings": 4,
+      "cooking_time": "45 minutes",
+      "difficulty": "easy",
+      "category": "main course",
       "how_to_prepare": "Dry chicken fry with bold spices including red chilies and black pepper, characteristic of the spicy cuisine of Rayalaseema region",
       "stepwise_instructions": [
         "Cut 1kg chicken into medium pieces",
@@ -56,6 +76,7 @@
     },
     {
       "name": "Ulavacharu",
+      "image": "https://images.unsplash.com/photo-1547592180-85f173990554?w=800&h=600&fit=crop&auto=format&q=80",
       "how_to_prepare": "Horse gram soup, a nutritious and flavorful soup made from sprouted horse gram, popular across Andhra Pradesh especially in Rayalaseema",
       "stepwise_instructions": [
         "Soak 1 cup horse gram overnight and sprout for 2 days",
@@ -70,6 +91,7 @@
     },
     {
       "name": "Bendakaya Pulusu",
+      "image": "placeholder",
       "how_to_prepare": "Tangy okra curry cooked in tamarind-based gravy with onions and traditional Andhra spices, a popular vegetarian dish",
       "stepwise_instructions": [
         "Cut 250g okra into 1-inch pieces",
@@ -84,6 +106,7 @@
     },
     {
       "name": "Gongura Pachadi",
+      "image": "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=800&h=600&fit=crop&auto=format&q=80",
       "how_to_prepare": "Tangy chutney made from sorrel leaves (gongura), a signature condiment of Andhra cuisine known for its sour taste and health benefits",
       "stepwise_instructions": [
         "Clean and wash 2 cups fresh gongura leaves",
@@ -98,6 +121,7 @@
     },
     {
       "name": "Pesarattu",
+      "image": "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=800&h=600&fit=crop&auto=format&q=80",
       "how_to_prepare": "Green gram dosa, a protein-rich breakfast dish made from whole green gram, popular across Andhra Pradesh as a healthy alternative to regular dosa",
       "stepwise_instructions": [
         "Soak 2 cups whole green gram for 4-6 hours",
@@ -112,6 +136,7 @@
     },
     {
       "name": "Hyderabadi Biryani",
+      "image": "https://images.unsplash.com/photo-1563379091339-03246963d129?w=800&h=600&fit=crop&auto=format&q=80",
       "how_to_prepare": "World-famous aromatic rice dish layered with marinated meat, cooked in dum style with saffron and spices, originated in Hyderabad",
       "stepwise_instructions": [
         "Marinate 1kg mutton with yogurt, red chili powder, turmeric, garam masala for 2 hours",
@@ -128,6 +153,7 @@
     },
     {
       "name": "Andhra Chicken Curry",
+      "image": "placeholder",
       "how_to_prepare": "Spicy chicken curry with coconut, curry leaves, and red chilies, representing the bold flavors of traditional Andhra cooking",
       "stepwise_instructions": [
         "Cut 1kg chicken into pieces and marinate with turmeric and salt",
@@ -203,21 +229,6 @@
       ]
     },
     {
-      "name": "Ariselu",
-      "how_to_prepare": "Traditional rice flour and jaggery sweet prepared during festivals, deep-fried until golden and crispy, a must-have during celebrations",
-      "stepwise_instructions": [
-        "Dry roast 2 cups rice flour until aromatic",
-        "Make jaggery syrup by boiling 1 cup jaggery with little water",
-        "Mix hot jaggery syrup with roasted rice flour gradually",
-        "Add sesame seeds and cardamom powder",
-        "Knead into a smooth dough when warm",
-        "Make small balls and flatten between banana leaves",
-        "Heat oil for deep frying",
-        "Fry ariselu until golden brown on both sides",
-        "Drain on paper towels and store when cool"
-      ]
-    },
-    {
       "name": "Natukodi Pulusu",
       "how_to_prepare": "Country chicken curry, a specialty of Rayalaseema prepared with free-range chicken in spicy tamarind gravy with traditional spices",
       "stepwise_instructions": [
@@ -250,6 +261,7 @@
     },
     {
       "name": "Bobbatlu (Puran Poli)",
+      "image": "https://images.unsplash.com/photo-1599038877910-1894f282e9bb?w=800&h=600&fit=crop&auto=format&q=80",
       "how_to_prepare": "Sweet stuffed flatbread filled with jaggery and lentil mixture, a traditional festive dessert especially popular during Ugadi",
       "stepwise_instructions": [
         "Cook 1 cup chana dal until soft and drain excess water",

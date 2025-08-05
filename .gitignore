@@ -1,0 +1,56 @@
+# Development and debug files
+debug_*.html
+*_test.html
+test_*.html
+clean_*.html
+image_test.html
+mobile_desktop_resume_test.html
+resume_test.html
+
+# Backup files
+script_backup.js
+script_clean.js
+
+# Documentation that's not needed for production
+DEPLOYMENT.md
+FINAL_COMPLETION_STATUS.md
+FIXES_COMPLETED.md
+GITHUB_READY.md
+MOBILE_AUDIO_FIXES.md
+MOBILE_DESKTOP_RESUME_FINAL_FIX.md
+PHASE_1_COMPLETE.md
+PRODUCTION_READY.md
+SMART_RESUME_COMPLETE.md
+SWEET_DISHES_ADDED.md
+
+# Temporary data files
+rayalaseema_dishes.json
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node modules (if any)
+node_modules/
+
+# Build outputs
+dist/
+build/
