@@ -966,12 +966,6 @@ function processMessage(message) {
         }
     }
     
-    // Recipe scaling
-    const scaleMatch = lowerMessage.match(/(?:scale|for|serves?)\s+(\d+)\s*(?:people|person|serving)/);
-    if (scaleMatch || lowerMessage.includes('double') || lowerMessage.includes('half')) {
-        return 'To scale a recipe, first ask for the recipe, then I\'ll provide scaling options. Try "How to make Ragi Sangati for 6 people?"';
-    }
-    
     // Enhanced search with filters
     const searchResults = enhancedSearch(lowerMessage);
     if (searchResults.ingredient.length > 0 || searchResults.category.length > 0 || 
@@ -979,8 +973,8 @@ function processMessage(message) {
         return formatEnhancedSearchResults(searchResults, lowerMessage);
     }
     
-    // Check for servings in the original query
-    const servingsMatch = lowerMessage.match(/(?:for|serves?)\s+(\d+)\s*(?:people|person|serving)/);
+    // Check for servings in the original query - improved pattern to handle more variations
+    const servingsMatch = lowerMessage.match(/(?:for|serves?)\s+(\d+)\s*(?:people|persons?|servings?|pax)?/i);
     
     // Search for matching dish
     const matchedDish = findMatchingDish(lowerMessage);
@@ -1788,21 +1782,38 @@ function scaleRecipe(dish, newServings) {
     const scaleFactor = newServings / dish.servings;
     const scaledDish = { ...dish };
     
-    // Scale ingredients if they exist
-    if (dish.ingredients) {
-        scaledDish.ingredients = dish.ingredients.map(ingredient => {
-            // Extract numbers and scale them
-            return ingredient.replace(/(\d+(?:\.\d+)?)\s*(cups?|tbsp|tsp|kg|g|ml|l)/gi, (match, amount, unit) => {
-                const scaledAmount = (parseFloat(amount) * scaleFactor).toFixed(1);
-                return `${scaledAmount} ${unit}`;
-            });
-        });
-    }
+    // Ingredients array contains only ingredient names without quantities,
+    // so we don't need to scale them - they remain the same
+    scaledDish.ingredients = [...dish.ingredients];
     
-    // Scale step-by-step instructions
+    // Scale quantities in step-by-step instructions
     scaledDish.stepwise_instructions = dish.stepwise_instructions.map(step => {
-        return step.replace(/(\d+(?:\.\d+)?)\s*(cups?|tbsp|tsp|kg|g|ml|l)/gi, (match, amount, unit) => {
-            const scaledAmount = (parseFloat(amount) * scaleFactor).toFixed(1);
+        return step.replace(/(\d+(?:\.\d+)?(?:\/\d+)?)\s*(cups?|tbsp|tsp|kg|g|ml|l|pieces?|numbers?|lbs?|oz|quarts?|pints?|gallons?)/gi, (match, amount, unit) => {
+            let scaledAmount;
+            
+            // Handle fractions like 1/2, 3/4, etc.
+            if (amount.includes('/')) {
+                const [numerator, denominator] = amount.split('/').map(Number);
+                const decimalAmount = numerator / denominator;
+                scaledAmount = (decimalAmount * scaleFactor);
+                
+                // Convert back to fraction if it makes sense
+                if (scaledAmount < 1 && scaledAmount > 0) {
+                    const fraction = convertToFraction(scaledAmount);
+                    if (fraction) {
+                        return `${fraction} ${unit}`;
+                    }
+                }
+                scaledAmount = scaledAmount.toFixed(1);
+            } else {
+                scaledAmount = (parseFloat(amount) * scaleFactor).toFixed(1);
+            }
+            
+            // Remove trailing .0 for whole numbers
+            if (scaledAmount.endsWith('.0')) {
+                scaledAmount = scaledAmount.slice(0, -2);
+            }
+            
             return `${scaledAmount} ${unit}`;
         });
     });
@@ -1811,6 +1822,32 @@ function scaleRecipe(dish, newServings) {
     scaledDish.scaledFrom = dish.servings;
     
     return scaledDish;
+}
+
+// Helper function to convert decimal to fraction
+function convertToFraction(decimal) {
+    // Common cooking fractions
+    const fractions = {
+        0.25: '1/4',
+        0.33: '1/3',
+        0.5: '1/2',
+        0.67: '2/3',
+        0.75: '3/4'
+    };
+    
+    // Find closest fraction
+    let closest = null;
+    let minDiff = Infinity;
+    
+    for (const [value, fraction] of Object.entries(fractions)) {
+        const diff = Math.abs(decimal - parseFloat(value));
+        if (diff < minDiff && diff < 0.1) {
+            minDiff = diff;
+            closest = fraction;
+        }
+    }
+    
+    return closest;
 }
 
 // Favorites functionality

@@ -6,6 +6,7 @@ clean_*.html
 image_test.html
 mobile_desktop_resume_test.html
 resume_test.html
+test_scaling.html
 
 # Backup files
 script_backup.js
